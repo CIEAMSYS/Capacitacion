@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Curso 4 - Programación</title>
+  <title>Curso Programación</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; background: #fafafa; }
     header { background: #0077cc; color: #fff; padding: 20px; border-radius: 12px; }
@@ -16,7 +16,7 @@
 </head>
 <body>
   <header>
-    <h1>Curso 4: Programación en C, C++ y Python</h1>
+    <h1>Curso : Programación en C, C++ y Python</h1>
   </header>
 
   <div class="contenido">
@@ -63,57 +63,57 @@
       output.textContent = "";
     });
 
-    // Inicializar Pyodide para Python
-    let pyodideReady = false;
-    let pyodide;
-    async function loadPyodideAndPackages() {
-      pyodide = await loadPyodide();
-      pyodideReady = true;
-    }
-    loadPyodideAndPackages();
-
-    // Función para ejecutar código
+    // Función principal para ejecutar código
     async function runCode() {
       output.textContent = "⏳ Ejecutando...";
       const code = editor.value;
       const lang = language.value;
 
       if (lang === "python") {
-        if (!pyodideReady) {
-          output.textContent = "⚠ Pyodide aún no está listo.";
-          return;
-        }
-        try {
-          let result = await pyodide.runPythonAsync(code);
-          output.textContent = result !== undefined ? result : "✔ Código Python ejecutado";
-        } catch (err) {
-          output.textContent = "❌ Error: " + err;
-        }
+        runPython(code);
       } else {
-        // Para C y C++ usamos wasm-clang (simple demo)
-        try {
-          const result = await compileAndRunClang(code, lang);
-          output.textContent = result;
-        } catch (err) {
-          output.textContent = "❌ Error: " + err;
-        }
+        runClang(code, lang);
       }
     }
 
-    // Demo de compilador C/C++ con wasm-clang
-    async function compileAndRunClang(code, lang) {
-      return new Promise((resolve) => {
-        resolve("⚠ Compilación C/C++ con wasm-clang aún en pruebas.\nCódigo recibido:\n" + code);
+    // Ejecutar Python con Skulpt
+    function runPython(code) {
+      output.textContent = "";
+      Sk.configure({
+        output: function(text) { output.textContent += text; },
+        read: builtinRead
       });
+      try {
+        Sk.misceval.asyncToPromise(() => Sk.importMainWithBody("<stdin>", false, code, true))
+          .catch(err => { output.textContent = "❌ Error: " + err.toString(); });
+      } catch (err) {
+        output.textContent = "❌ Error: " + err.toString();
+      }
+    }
+
+    function builtinRead(x) {
+      if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+        throw "File not found: '" + x + "'";
+      return Sk.builtinFiles["files"][x];
+    }
+
+    // Ejecutar C/C++ con wasm-clang (demo)
+    async function runClang(code, lang) {
+      try {
+        const result = await Clang.compile(code, { lang: lang });
+        output.textContent = result.stdout || "✔ Código ejecutado";
+      } catch (err) {
+        output.textContent = "❌ Error: " + err;
+      }
     }
   </script>
 
-  <!-- Pyodide desde CDN -->
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+  <!-- Skulpt desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
 
-  <!-- Futuro: wasm-clang desde CDN -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/wasm-clang"></script> -->
+  <!-- wasm-clang desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/wasm-clang@0.2.2/dist/clang.js"></script>
 
 </body>
 </html>
-
