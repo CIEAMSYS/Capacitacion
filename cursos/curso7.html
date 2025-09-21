@@ -2,107 +2,86 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Página de Programación</title>
+  <title>Curso 1 - Introducción a la Mecatrónica</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
-    h1, h2 { color: #333; }
-    .video-container {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    iframe {
-      width: 360px;
-      height: 200px;
-      border: none;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    textarea {
-      width: 100%;
-      height: 200px;
-      font-family: monospace;
-      font-size: 14px;
-      border-radius: 8px;
-      padding: 10px;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      background: #0077cc;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover { background: #005fa3; }
-    pre {
-      background: #111;
-      color: #0f0;
-      padding: 10px;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-    .content-box {
-      background: white;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+    body { font-family: Arial, sans-serif; margin: 20px; background: #fafafa; }
+    header { background: #0077cc; color: #fff; padding: 20px; border-radius: 12px; }
+    header h1 { margin: 0; }
+    .contenido { margin-top: 20px; line-height: 1.6; }
+    iframe { display: block; margin: 20px auto; max-width: 100%; border-radius: 12px; }
+    .selector { margin: 20px 0; }
+    select { padding: 10px; font-size: 16px; border-radius: 8px; }
+    a.volver { display: inline-block; margin-top: 20px; background: #222; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 8px; }
+    a.volver:hover { background: #444; }
   </style>
-</head>
-<body>
-  <h1>Sección de Programación</h1>
-
-  <!-- VIDEOS DE YOUTUBE -->
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/ZzaPdXTrSb8" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/3lQEunpmtRA" allowfullscreen></iframe>
-  </div>
-
-  <!-- TEXTO REDACTADO -->
-  <div class="content-box">
-    <h2>Introducción</h2>
-    <p>
-      Bienvenido a la sección de programación. Aquí podrás ver algunos videos de introducción,
-      leer explicaciones y además probar tus propios programas en C directamente desde esta página.
-    </p>
-  </div>
-
-  <!-- CAJÓN DE CÓDIGO -->
-  <div class="content-box">
-    <h2>Prueba tu código en C</h2>
-    <textarea id="code">
-#include <stdio.h>
-int main() {
-    printf("Hola desde C en GitHub Pages!\\n");
-    return 0;
-}
-    </textarea>
-    <br>
-    <button onclick="runCode()">Ejecutar</button>
-    <h3>Salida del programa:</h3>
-    <pre id="output"></pre>
-  </div>
-
-  <!-- Motor C en WebAssembly -->
-  <script src="https://bellard.org/quickjs/qjs-modules/c.js"></script>
   <script>
-    async function runCode() {
-      const code = document.getElementById("code").value;
-      const output = document.getElementById("output");
-      output.textContent = "Compilando...\n";
+    function cambiarLenguaje() {
+      var lenguaje = document.getElementById("lenguaje").value;
+      var iframe = document.getElementById("editor");
+      if (lenguaje === "c") {
+        iframe.srcdoc = `<html><body><textarea style="width:100%;height:70%;">#include <stdio.h>
 
-      try {
-        const result = await CRunner.run(code);
-        output.textContent = result.output;
-      } catch (err) {
-        output.textContent = "Error: " + err.message;
+int main() {
+    printf("Hola, Mundo en C!\n");
+    return 0;
+}</textarea></body></html>`;
+      } else if (lenguaje === "cpp") {
+        iframe.srcdoc = `<html><body><textarea style="width:100%;height:70%;">#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hola, Mundo en C++!" << endl;
+    return 0;
+}</textarea></body></html>`;
+      } else if (lenguaje === "python") {
+        iframe.srcdoc = `<html><body><textarea style="width:100%;height:70%;">print("Hola, Mundo en Python!")</textarea></body></html>`;
       }
     }
   </script>
+</head>
+<body>
+  <header>
+    <h1>Curso 1: Introducción a la Mecatrónica</h1>
+  </header>
+
+  <div class="contenido">
+    <p>Bienvenido al primer curso de Mecatrónica. Aquí aprenderás los fundamentos básicos.</p>
+
+    <h2>📹 Video de Introducción</h2>
+    <!-- Incrustar video de YouTube -->
+    <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/ID_DEL_VIDEO" 
+            title="Video de Introducción" 
+            frameborder="0" allowfullscreen>
+    </iframe>
+
+    <h2>📘 Contenido del curso</h2>
+    <p>Aquí puedes escribir el contenido del curso, agregar imágenes, texto o más videos.</p>
+
+    <h2>💻 Prueba tu código</h2>
+    <div class="selector">
+      <label for="lenguaje">Selecciona un lenguaje: </label>
+      <select id="lenguaje" onchange="cambiarLenguaje()">
+        <option value="c">C</option>
+        <option value="cpp">C++</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
+
+    <!-- Editor con código de ejemplo por defecto en C -->
+    <iframe id="editor" 
+            srcdoc='<html><body><textarea style="width:100%;height:70%;">#include <stdio.h>
+
+int main() {
+    printf("Hola, Mundo en C!\n");
+    return 0;
+}</textarea></body></html>' 
+            width="100%" 
+            height="500" 
+            frameborder="0">
+    </iframe>
+  </div>
+
+  <a href="../index.html" class="volver">⬅ Volver al inicio</a>
 </body>
 </html>
