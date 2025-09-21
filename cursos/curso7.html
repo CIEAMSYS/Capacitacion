@@ -2,87 +2,118 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Curso Programación</title>
+  <title>Curso 4 - Programación</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; background: #fafafa; }
     header { background: #0077cc; color: #fff; padding: 20px; border-radius: 12px; }
     header h1 { margin: 0; }
     .contenido { margin-top: 20px; line-height: 1.6; }
-    iframe { display: block; margin: 20px auto; max-width: 100%; border-radius: 12px; }
-    .selector { margin: 20px 0; }
-    select { padding: 10px; font-size: 16px; border-radius: 8px; }
-    a.volver { display: inline-block; margin-top: 20px; background: #222; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 8px; }
-    a.volver:hover { background: #444; }
+    textarea { width: 100%; height: 250px; font-family: monospace; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
+    select, button { margin-top: 10px; padding: 8px 12px; border-radius: 8px; border: none; background: #0077cc; color: #fff; cursor: pointer; }
+    button:hover { background: #005fa3; }
+    pre { background: #222; color: #0f0; padding: 15px; border-radius: 8px; overflow-x: auto; margin-top: 15px; }
   </style>
-  <script>
-    function cambiarLenguaje() {
-      var lenguaje = document.getElementById("lenguaje").value;
-      var iframe = document.getElementById("editor");
-      if (lenguaje === "c") {
-        iframe.srcdoc = `<html><body><textarea style="width:100%;height:70%;">#include <stdio.h>
-
-int main() {
-    printf("Hola, Mundo en C!\n");
-    return 0;
-}</textarea></body></html>`;
-      } else if (lenguaje === "cpp") {
-        iframe.srcdoc = `<html><body><textarea style="width:100%;height:70%;">#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "Hola, Mundo en C++!" << endl;
-    return 0;
-}</textarea></body></html>`;
-      } else if (lenguaje === "python") {
-        iframe.srcdoc = `<html><body><textarea style="width:100%;height:70%;">print("Hola, Mundo en Python!")</textarea></body></html>`;
-      }
-    }
-  </script>
 </head>
 <body>
   <header>
-    <h1>Curso 1: Introducción a la Mecatrónica</h1>
+    <h1>Curso 4: Programación en C, C++ y Python</h1>
   </header>
 
   <div class="contenido">
-    <p>Bienvenido al primer curso de Mecatrónica. Aquí aprenderás los fundamentos básicos.</p>
-
     <h2>📹 Video de Introducción</h2>
-    <!-- Incrustar video de YouTube -->
     <iframe width="560" height="315" 
             src="https://www.youtube.com/embed/ID_DEL_VIDEO" 
             title="Video de Introducción" 
             frameborder="0" allowfullscreen>
     </iframe>
 
-    <h2>📘 Contenido del curso</h2>
-    <p>Aquí puedes escribir el contenido del curso, agregar imágenes, texto o más videos.</p>
+    <h2>✍️ Prueba tu código</h2>
+    <label for="language">Selecciona un lenguaje:</label>
+    <select id="language">
+      <option value="c">C</option>
+      <option value="cpp">C++</option>
+      <option value="python">Python</option>
+    </select>
 
-    <h2>💻 Prueba tu código</h2>
-    <div class="selector">
-      <label for="lenguaje">Selecciona un lenguaje: </label>
-      <select id="lenguaje" onchange="cambiarLenguaje()">
-        <option value="c">C</option>
-        <option value="cpp">C++</option>
-        <option value="python">Python</option>
-      </select>
-    </div>
+    <textarea id="editor"></textarea>
+    <br>
+    <button onclick="runCode()">▶ Ejecutar</button>
 
-    <!-- Editor con código de ejemplo por defecto en C -->
-    <iframe id="editor" 
-            srcdoc='<html><body><textarea style="width:100%;height:70%;">#include <stdio.h>
-
-int main() {
-    printf("Hola, Mundo en C!\n");
-    return 0;
-}</textarea></body></html>' 
-            width="100%" 
-            height="500" 
-            frameborder="0">
-    </iframe>
+    <h3>Salida:</h3>
+    <pre id="output"></pre>
   </div>
 
-  <a href="../index.html" class="volver">⬅ Volver al inicio</a>
+  <script>
+    // Ejemplos Hello World precargados
+    const examples = {
+      c: `#include <stdio.h>\nint main() {\n    printf("Hello, World from C!\\n");\n    return 0;\n}`,
+      cpp: `#include <iostream>\nusing namespace std;\nint main() {\n    cout << "Hello, World from C++!\\n";\n    return 0;\n}`,
+      python: `print("Hello, World from Python!")`
+    };
+
+    const editor = document.getElementById("editor");
+    const output = document.getElementById("output");
+    const language = document.getElementById("language");
+
+    // Precargar ejemplo por defecto
+    editor.value = examples[language.value];
+
+    language.addEventListener("change", () => {
+      editor.value = examples[language.value];
+      output.textContent = "";
+    });
+
+    // Inicializar Pyodide para Python
+    let pyodideReady = false;
+    let pyodide;
+    async function loadPyodideAndPackages() {
+      pyodide = await loadPyodide();
+      pyodideReady = true;
+    }
+    loadPyodideAndPackages();
+
+    // Función para ejecutar código
+    async function runCode() {
+      output.textContent = "⏳ Ejecutando...";
+      const code = editor.value;
+      const lang = language.value;
+
+      if (lang === "python") {
+        if (!pyodideReady) {
+          output.textContent = "⚠ Pyodide aún no está listo.";
+          return;
+        }
+        try {
+          let result = await pyodide.runPythonAsync(code);
+          output.textContent = result !== undefined ? result : "✔ Código Python ejecutado";
+        } catch (err) {
+          output.textContent = "❌ Error: " + err;
+        }
+      } else {
+        // Para C y C++ usamos wasm-clang (simple demo)
+        try {
+          const result = await compileAndRunClang(code, lang);
+          output.textContent = result;
+        } catch (err) {
+          output.textContent = "❌ Error: " + err;
+        }
+      }
+    }
+
+    // Demo de compilador C/C++ con wasm-clang
+    async function compileAndRunClang(code, lang) {
+      return new Promise((resolve) => {
+        resolve("⚠ Compilación C/C++ con wasm-clang aún en pruebas.\nCódigo recibido:\n" + code);
+      });
+    }
+  </script>
+
+  <!-- Pyodide desde CDN -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+
+  <!-- Futuro: wasm-clang desde CDN -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/wasm-clang"></script> -->
+
 </body>
 </html>
 
