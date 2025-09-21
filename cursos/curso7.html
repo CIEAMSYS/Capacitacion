@@ -2,118 +2,155 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Curso Programación</title>
+  <title>Curso 5 - Entorno del Lenguaje de Programación</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #fafafa; }
+    body { font-family: Arial, sans-serif; margin: 20px; background: #fafafa; line-height: 1.6; }
     header { background: #0077cc; color: #fff; padding: 20px; border-radius: 12px; }
     header h1 { margin: 0; }
-    .contenido { margin-top: 20px; line-height: 1.6; }
-    textarea { width: 100%; height: 250px; font-family: monospace; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
-    select, button { margin-top: 10px; padding: 8px 12px; border-radius: 8px; border: none; background: #0077cc; color: #fff; cursor: pointer; }
-    button:hover { background: #005fa3; }
-    pre { background: #222; color: #0f0; padding: 15px; border-radius: 8px; overflow-x: auto; margin-top: 15px; }
+    h2 { margin-top: 30px; }
+    .tema { margin-top: 20px; padding: 15px; background: #fff; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .ejemplos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px; }
+    .ejemplo { background: #222; color: #0f0; padding: 15px; border-radius: 8px; font-family: monospace; white-space: pre; overflow-x: auto; }
+    .etiqueta { font-weight: bold; margin-bottom: 5px; display: block; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Curso : Programación en C, C++ y Python</h1>
+    <h1>Curso 5: Entorno del Lenguaje de Programación</h1>
   </header>
 
   <div class="contenido">
-    <h2>📹 Video de Introducción</h2>
-    <iframe width="560" height="315" 
-            src="https://www.youtube.com/embed/ID_DEL_VIDEO" 
-            title="Video de Introducción" 
-            frameborder="0" allowfullscreen>
-    </iframe>
+    <div class="tema">
+      <h2>2.1 Fundamentos conceptuales de programación</h2>
+      <p>Incluyen conceptos como datos, información, lenguajes de alto nivel, tipos de datos, lenguajes de aplicación, compiladores, ensambladores, utilerías de archivos y bibliotecas.</p>
+      <div class="ejemplos">
+        <div>
+          <span class="etiqueta">Ejemplo en C</span>
+          <div class="ejemplo">#include &lt;stdio.h&gt;
+int main() {
+    int numero = 10; // dato
+    printf("El número es: %d", numero);
+    return 0;
+}</div>
+        </div>
+        <div>
+          <span class="etiqueta">Ejemplo en Python</span>
+          <div class="ejemplo">numero = 10  # dato
+print("El número es:", numero)</div>
+        </div>
+      </div>
+    </div>
 
-    <h2>✍️ Prueba tu código</h2>
-    <label for="language">Selecciona un lenguaje:</label>
-    <select id="language">
-      <option value="c">C</option>
-      <option value="cpp">C++</option>
-      <option value="python">Python</option>
-    </select>
+    <div class="tema">
+      <h2>2.2 Estructura de un programa básico</h2>
+      <div class="ejemplos">
+        <div>
+          <span class="etiqueta">Ejemplo en C</span>
+          <div class="ejemplo">#include &lt;stdio.h&gt;
+int main() {
+    // Inicio del programa
+    printf("Hola mundo en C\n");
+    return 0; // Fin del programa
+}</div>
+        </div>
+        <div>
+          <span class="etiqueta">Ejemplo en Python</span>
+          <div class="ejemplo"># Inicio del programa
+print("Hola mundo en Python")
+# Fin del programa</div>
+        </div>
+      </div>
+    </div>
 
-    <textarea id="editor"></textarea>
-    <br>
-    <button onclick="runCode()">▶ Ejecutar</button>
+    <div class="tema">
+      <h2>2.3 Declaración de variables</h2>
+      <div class="ejemplos">
+        <div>
+          <span class="etiqueta">Ejemplo en C</span>
+          <div class="ejemplo">#include &lt;stdio.h&gt;
+int main() {
+    int edad = 20;
+    float altura = 1.75;
+    printf("Edad: %d, Altura: %.2f", edad, altura);
+    return 0;
+}</div>
+        </div>
+        <div>
+          <span class="etiqueta">Ejemplo en Python</span>
+          <div class="ejemplo">edad = 20
+altura = 1.75
+print("Edad:", edad, "Altura:", altura)</div>
+        </div>
+      </div>
+    </div>
 
-    <h3>Salida:</h3>
-    <pre id="output"></pre>
+    <div class="tema">
+      <h2>2.4 Sentencias de entrada/salida de datos</h2>
+      <div class="ejemplos">
+        <div>
+          <span class="etiqueta">Ejemplo en C</span>
+          <div class="ejemplo">#include &lt;stdio.h&gt;
+int main() {
+    int numero;
+    printf("Ingresa un número: ");
+    scanf("%d", &numero);
+    printf("Ingresaste: %d", numero);
+    return 0;
+}</div>
+        </div>
+        <div>
+          <span class="etiqueta">Ejemplo en Python</span>
+          <div class="ejemplo">numero = input("Ingresa un número: ")
+print("Ingresaste:", numero)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tema">
+      <h2>2.5 Expresiones (Aritméticas, lógicas y relacionales)</h2>
+      <div class="ejemplos">
+        <div>
+          <span class="etiqueta">Ejemplo en C</span>
+          <div class="ejemplo">#include &lt;stdio.h&gt;
+int main() {
+    int a = 5, b = 3;
+    printf("Suma: %d\n", a + b);
+    printf("Comparación (a > b): %d\n", a > b);
+    printf("AND lógico: %d\n", (a > 0 &amp;&amp; b > 0));
+    return 0;
+}</div>
+        </div>
+        <div>
+          <span class="etiqueta">Ejemplo en Python</span>
+          <div class="ejemplo">a = 5
+b = 3
+print("Suma:", a + b)
+print("Comparación (a > b):", a > b)
+print("AND lógico:", (a > 0 and b > 0))</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tema">
+      <h2>2.6 Depuración de un programa</h2>
+      <p>La depuración consiste en identificar y corregir errores. Se utilizan mensajes de impresión o depuradores.</p>
+      <div class="ejemplos">
+        <div>
+          <span class="etiqueta">Ejemplo en C</span>
+          <div class="ejemplo">#include &lt;stdio.h&gt;
+int main() {
+    int x = 10;
+    printf("Valor de x: %d\n", x); // depuración con printf
+    return 0;
+}</div>
+        </div>
+        <div>
+          <span class="etiqueta">Ejemplo en Python</span>
+          <div class="ejemplo">x = 10
+print("Valor de x:", x)  # depuración con print</div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <script>
-    // Ejemplos Hello World precargados
-    const examples = {
-      c: `#include <stdio.h>\nint main() {\n    printf("Hello, World from C!\\n");\n    return 0;\n}`,
-      cpp: `#include <iostream>\nusing namespace std;\nint main() {\n    cout << "Hello, World from C++!\\n";\n    return 0;\n}`,
-      python: `print("Hello, World from Python!")`
-    };
-
-    const editor = document.getElementById("editor");
-    const output = document.getElementById("output");
-    const language = document.getElementById("language");
-
-    // Precargar ejemplo por defecto
-    editor.value = examples[language.value];
-
-    language.addEventListener("change", () => {
-      editor.value = examples[language.value];
-      output.textContent = "";
-    });
-
-    // Función principal para ejecutar código
-    async function runCode() {
-      output.textContent = "⏳ Ejecutando...";
-      const code = editor.value;
-      const lang = language.value;
-
-      if (lang === "python") {
-        runPython(code);
-      } else {
-        runClang(code, lang);
-      }
-    }
-
-    // Ejecutar Python con Skulpt
-    function runPython(code) {
-      output.textContent = "";
-      Sk.configure({
-        output: function(text) { output.textContent += text; },
-        read: builtinRead
-      });
-      try {
-        Sk.misceval.asyncToPromise(() => Sk.importMainWithBody("<stdin>", false, code, true))
-          .catch(err => { output.textContent = "❌ Error: " + err.toString(); });
-      } catch (err) {
-        output.textContent = "❌ Error: " + err.toString();
-      }
-    }
-
-    function builtinRead(x) {
-      if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
-        throw "File not found: '" + x + "'";
-      return Sk.builtinFiles["files"][x];
-    }
-
-    // Ejecutar C/C++ con wasm-clang (demo)
-    async function runClang(code, lang) {
-      try {
-        const result = await Clang.compile(code, { lang: lang });
-        output.textContent = result.stdout || "✔ Código ejecutado";
-      } catch (err) {
-        output.textContent = "❌ Error: " + err;
-      }
-    }
-  </script>
-
-  <!-- Skulpt desde CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
-
-  <!-- wasm-clang desde CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/wasm-clang@0.2.2/dist/clang.js"></script>
-
 </body>
 </html>
