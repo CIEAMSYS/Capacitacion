@@ -1,166 +1,676 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Entorno del Lenguaje de Programación</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
-    h1, h2, h3 { color: #333; }
-    pre {
-      background: #111;
-      color: #0f0;
-      padding: 10px;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-    .content-box {
-      background: white;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación en Python y C</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #60a5fa;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray: #94a3b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--primary);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 0.8rem 0;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f3f4f6;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .code-header {
+            background: var(--dark);
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: var(--primary);
+        }
+        
+        pre {
+            background: #1a1a1a;
+            color: #f0f0f0;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 0;
+            tab-size: 4;
+        }
+        
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+        }
+        
+        .language-c {
+            color: #8ec07c;
+        }
+        
+        .language-python {
+            color: #83a598;
+        }
+        
+        .video-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+        
+        .video-placeholder {
+            width: 360px;
+            height: 200px;
+            background: var(--dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .interactive-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            border-radius: 8px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            resize: vertical;
+        }
+        
+        .run-btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            background: var(--primary);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .run-btn:hover {
+            background: var(--secondary);
+        }
+        
+        .output-container {
+            margin-top: 20px;
+        }
+        
+        .output-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        #output {
+            background: #1a1a1a;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 100px;
+            font-family: 'Fira Code', monospace;
+            white-space: pre-wrap;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background: var(--dark);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .video-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .video-placeholder {
+                width: 100%;
+                max-width: 360px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Entorno del Lenguaje de Programación</h1>
+    <header>
+        <div class="container">
+            <h1>Documento Técnico: Programación en Python y C</h1>
+            <p class="subtitle">Una guía completa sobre los fundamentos de programación, comparando los enfoques de Python y C, con ejemplos prácticos y elementos interactivos.</p>
+        </div>
+    </header>
 
-  <div class="content-box">
-    <h2>2.1 Fundamentos conceptuales de programación</h2>
-    <p>
-      La programación consiste en diseñar y construir programas que resuelvan problemas.  
-      Conceptos básicos:
-      <ul>
-        <li><b>Datos:</b> valores que manipula un programa.</li>
-        <li><b>Información:</b> datos procesados con un significado.</li>
-        <li><b>Lenguajes de alto nivel:</b> como C o Python, fáciles de entender por humanos.</li>
-        <li><b>Tipos de datos:</b> enteros, flotantes, caracteres, cadenas, booleanos.</li>
-        <li><b>Compiladores y ensambladores:</b> traducen el código a lenguaje máquina.</li>
-        <li><b>Bibliotecas:</b> colecciones de funciones listas para usar.</li>
-      </ul>
-    </p>
-    <h3>Ejemplo en C</h3>
-    <pre>
-#include &lt;stdio.h&gt;
-int main() {
-    int numero = 10;   // dato tipo entero
-    printf("El número es: %d\n", numero);
-    return 0;
-}
-    </pre>
-    <h3>Ejemplo en Python</h3>
-    <pre>
-numero = 10   # dato tipo entero
-print("El número es:", numero)
-    </pre>
-  </div>
+    <div class="container">
+        <div class="content-box">
+            <h2>2.1. Fundamentos Conceptuales de Programación</h2>
+            
+            <h3>Datos vs. Información</h3>
+            <p><strong>Dato:</strong> Valor crudo y sin procesar (ej: 25, 'A', True).</p>
+            <p><strong>Información:</strong> Resultado de procesar y contextualizar datos para darles significado (ej: "La temperatura es de 25°C").</p>
+            
+            <h3>Lenguajes de Programación</h3>
+            <p><strong>Python:</strong> Lenguaje de alto nivel con sintaxis clara y legible. Prioriza la productividad del desarrollador.</p>
+            <p><strong>C:</strong> Lenguaje de alto nivel de sistemas. Ofrece estructuras de alto nivel pero permite control de bajo nivel sobre memoria y hardware.</p>
+            
+            <h3>Tipos de Datos</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Python</th>
+                    <th>C</th>
+                </tr>
+                <tr>
+                    <td>Entero</td>
+                    <td>int (tipado dinámico)</td>
+                    <td>int, short, long (tipado estático)</td>
+                </tr>
+                <tr>
+                    <td>Flotante</td>
+                    <td>float</td>
+                    <td>float, double</td>
+                </tr>
+                <tr>
+                    <td>Carácter</td>
+                    <td>str (de 1 carácter)</td>
+                    <td>char</td>
+                </tr>
+                <tr>
+                    <td>Cadena</td>
+                    <td>str</td>
+                    <td>char[] (array de caracteres)</td>
+                </tr>
+                <tr>
+                    <td>Booleano</td>
+                    <td>bool</td>
+                    <td>bool (C99) o int</td>
+                </tr>
+            </table>
+            
+            <h3>Compiladores vs. Intérpretes</h3>
+            <p><strong>C:</strong> Lenguaje compilado. Se traduce completamente a código máquina generando un ejecutable.</p>
+            <p><strong>Python:</strong> Lenguaje interpretado. El código se ejecuta línea por línea por un intérprete.</p>
+            
+            <h3>Bibliotecas</h3>
+            <p><strong>C:</strong> Colecciones de funciones precompiladas. Se incluyen con #include.</p>
+            <p><strong>Python:</strong> Módulos o paquetes. Se incluyen con import.</p>
+        </div>
 
-  <div class="content-box">
-    <h2>2.2 Estructura de un programa</h2>
-    <p>Un programa tiene una estructura básica: declaraciones, instrucciones y salida de resultados.</p>
-    <h3>Ejemplo en C</h3>
-    <pre>
-#include &lt;stdio.h&gt;
-int main() {
-    printf("Hola, mundo!\n");
-    return 0;
-}
-    </pre>
-    <h3>Ejemplo en Python</h3>
-    <pre>
-print("Hola, mundo!")
-    </pre>
-  </div>
+        <div class="content-box">
+            <h2>2.2. Estructura de un Programa Básico</h2>
+            
+            <h3>Estructura en C</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Estructura básica de un programa en C</span>
+                    <button class="copy-btn" onclick="copyCode('c-code')">Copiar código</button>
+                </div>
+                <pre><code id="c-code" class="language-c">#include &lt;stdio.h&gt;
 
-  <div class="content-box">
-    <h2>2.3 Declaración de variables</h2>
-    <p>Las variables almacenan datos que se usan en un programa.</p>
-    <h3>Ejemplo en C</h3>
-    <pre>
-#include &lt;stdio.h&gt;
 int main() {
-    int edad = 20;
-    float altura = 1.75;
-    char inicial = 'A';
-    printf("Edad: %d, Altura: %.2f, Inicial: %c\n", edad, altura, inicial);
+    // Cuerpo del programa
+    printf("Hola, Mundo!\n");
+    
     return 0;
-}
-    </pre>
-    <h3>Ejemplo en Python</h3>
-    <pre>
-edad = 20
-altura = 1.75
-inicial = "A"
-print("Edad:", edad, "Altura:", altura, "Inicial:", inicial)
-    </pre>
-  </div>
+}</code></pre>
+            </div>
+            
+            <h3>Estructura en Python</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Estructura básica de un programa en Python</span>
+                    <button class="copy-btn" onclick="copyCode('python-code')">Copiar código</button>
+                </div>
+                <pre><code id="python-code" class="language-python"># Importación de módulos (opcional)
+import math
 
-  <div class="content-box">
-    <h2>2.4 Sentencias de entrada/salida de datos</h2>
-    <p>Permiten interactuar con el usuario.</p>
-    <h3>Ejemplo en C</h3>
-    <pre>
-#include &lt;stdio.h&gt;
-int main() {
-    int numero;
-    printf("Ingrese un número: ");
-    scanf("%d", &numero);
-    printf("El número ingresado fue: %d\n", numero);
-    return 0;
-}
-    </pre>
-    <h3>Ejemplo en Python</h3>
-    <pre>
-numero = int(input("Ingrese un número: "))
-print("El número ingresado fue:", numero)
-    </pre>
-  </div>
+# Función principal (convención, no obligatoria)
+def main():
+    # Cuerpo del programa
+    print("Hola, Mundo!")
 
-  <div class="content-box">
-    <h2>2.5 Expresiones (Aritméticas, lógicas y relacionales)</h2>
-    <p>Las expresiones combinan valores y operadores para producir un resultado.</p>
-    <h3>Ejemplo en C</h3>
-    <pre>
-#include &lt;stdio.h&gt;
-int main() {
-    int a = 5, b = 3;
-    printf("Suma: %d\n", a + b);        // aritmética
-    printf("Mayor: %d\n", a > b);       // relacional
-    printf("Condición: %d\n", (a > 0 && b > 0)); // lógica
-    return 0;
-}
-    </pre>
-    <h3>Ejemplo en Python</h3>
-    <pre>
-a, b = 5, 3
-print("Suma:", a + b)          # aritmética
-print("Mayor:", a > b)         # relacional
-print("Condición:", a > 0 and b > 0)  # lógica
-    </pre>
-  </div>
+# Punto de entrada del script
+if __name__ == "__main__":
+    main()</code></pre>
+            </div>
+        </div>
 
-  <div class="content-box">
-    <h2>2.6 Depuración de un programa</h2>
-    <p>La depuración es el proceso de encontrar y corregir errores en el código.</p>
-    <h3>Ejemplo en C</h3>
-    <pre>
-#include &lt;stdio.h&gt;
+        <div class="content-box">
+            <h2>2.3. Declaración de Variables</h2>
+            
+            <h3>Declaración en C (Estática y Explícita)</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Declaración de variables en C</span>
+                    <button class="copy-btn" onclick="copyCode('c-vars')">Copiar código</button>
+                </div>
+                <pre><code id="c-vars" class="language-c">int edad = 25;          // Entero
+float precio = 19.99;   // Flotante
+char letra = 'A';       // Carácter
+char nombre[] = "Ana";  // Cadena de caracteres</code></pre>
+            </div>
+            
+            <h3>Declaración en Python (Dinámica e Implícita)</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Declaración de variables en Python</span>
+                    <button class="copy-btn" onclick="copyCode('python-vars')">Copiar código</button>
+                </div>
+                <pre><code id="python-vars" class="language-python">edad = 25          # Se infiere que es un int
+precio = 19.99     # Se infiere que es un float
+letra = 'A'        # Se infiere que es un str (de un solo carácter)
+nombre = "Ana"     # Se infiere que es un str</code></pre>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h2>2.4. Sentencias de Entrada/Salida de Datos</h2>
+            
+            <h3>Entrada/Salida en C</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Entrada y salida en C</span>
+                    <button class="copy-btn" onclick="copyCode('c-io')">Copiar código</button>
+                </div>
+                <pre><code id="c-io" class="language-c">#include &lt;stdio.h&gt;
+
 int main() {
-    int x = 10;
-    int y = 0;
-    // printf("%d", x / y); // Error: división por cero
-    printf("Depuración: evitar errores como división entre cero\n");
+    int edad;
+    float altura;
+    char nombre[50];
+    
+    // Entrada
+    printf("Introduce tu nombre: ");
+    scanf("%s", nombre);
+    
+    printf("Introduce tu edad: ");
+    scanf("%d", &edad);
+    
+    printf("Introduce tu altura: ");
+    scanf("%f", &altura);
+    
+    // Salida
+    printf("Hola %s, tienes %d años y mides %.2f metros.\n", nombre, edad, altura);
+    
     return 0;
-}
-    </pre>
-    <h3>Ejemplo en Python</h3>
-    <pre>
-x = 10
-y = 0
-# print(x / y)  # Error: división por cero
-print("Depuración: evitar errores como división entre cero")
-    </pre>
-  </div>
+}</code></pre>
+            </div>
+            
+            <h3>Entrada/Salida en Python</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Entrada y salida en Python</span>
+                    <button class="copy-btn" onclick="copyCode('python-io')">Copiar código</button>
+                </div>
+                <pre><code id="python-io" class="language-python"># Entrada
+nombre = input("Introduce tu nombre: ")
+edad = int(input("Introduce tu edad: "))
+altura = float(input("Introduce tu altura: "))
+
+# Salida
+print(f"Hola {nombre}, tienes {edad} años y mides {altura:.2f} metros.")</code></pre>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h2>2.5. Expresiones (Aritméticas, Lógicas y Relacionales)</h2>
+            
+            <h3>Operadores en C y Python</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Categoría</th>
+                    <th>Operadores (C y Python)</th>
+                    <th>Ejemplo en C</th>
+                    <th>Ejemplo en Python</th>
+                </tr>
+                <tr>
+                    <td>Aritméticos</td>
+                    <td>+, -, *, /, %</td>
+                    <td>int res = 5 + 3 * 2;</td>
+                    <td>res = 5 + 3 * 2</td>
+                </tr>
+                <tr>
+                    <td>Relacionales</td>
+                    <td>==, !=, >, <, >=, <=</td>
+                    <td>if (edad >= 18) { ... }</td>
+                    <td>if edad >= 18:</td>
+                </tr>
+                <tr>
+                    <td>Lógicos</td>
+                    <td>&& (and), || (or), ! (not)</td>
+                    <td>if (x > 0 && x < 10)</td>
+                    <td>if x > 0 and x < 10:</td>
+                </tr>
+            </table>
+            
+            <h3>Ejemplo de Expresiones en C</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Expresiones en C</span>
+                    <button class="copy-btn" onclick="copyCode('c-expr')">Copiar código</button>
+                </div>
+                <pre><code id="c-expr" class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 10, b = 5;
+    int suma = a + b;
+    int resta = a - b;
+    int multiplicacion = a * b;
+    float division = a / (float)b; // Conversión a float
+    
+    // Expresiones relacionales
+    int mayor = a > b; // 1 (true)
+    int igual = a == b; // 0 (false)
+    
+    // Expresiones lógicas
+    int condicion = (a > 0) && (b < 10); // 1 (true)
+    
+    printf("Suma: %d\n", suma);
+    printf("División: %.2f\n", division);
+    printf("¿A > B? %d\n", mayor);
+    printf("¿A > 0 y B < 10? %d\n", condicion);
+    
+    return 0;
+}</code></pre>
+            </div>
+            
+            <h3>Ejemplo de Expresiones en Python</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Expresiones en Python</span>
+                    <button class="copy-btn" onclick="copyCode('python-expr')">Copiar código</button>
+                </div>
+                <pre><code id="python-expr" class="language-python">a = 10
+b = 5
+suma = a + b
+resta = a - b
+multiplicacion = a * b
+division = a / b  # Resultado float
+
+# Expresiones relacionales
+mayor = a > b  # True
+igual = a == b  # False
+
+# Expresiones lógicas
+condicion = (a > 0) and (b < 10)  # True
+
+print(f"Suma: {suma}")
+print(f"División: {division:.2f}")
+print(f"¿A > B? {mayor}")
+print(f"¿A > 0 y B < 10? {condicion}")</code></pre>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h2>2.6. Depuración de un Programa</h2>
+            
+            <h3>Errores Comunes</h3>
+            <p><strong>En C:</strong></p>
+            <ul>
+                <li>Errores de sintaxis (olvidar ;, {}, ())</li>
+                <li>Errores de tiempo de ejecución (acceso a memoria incorrecta)</li>
+                <li>Errores lógicos (lógica incorrecta en bucles o condiciones)</li>
+            </ul>
+            
+            <p><strong>En Python:</strong></p>
+            <ul>
+                <li>Errores de sintaxis (indentación, olvidar :)</li>
+                <li>Errores de tiempo de ejecución (TypeError, NameError, IndexError)</li>
+                <li>Errores lógicos (similares a C)</li>
+            </ul>
+            
+            <h3>Técnicas de Depuración</h3>
+            <p><strong>En C:</strong> Compiler warnings, GDB (GNU Debugger), prints de depuración.</p>
+            <p><strong>En Python:</strong> pdb (Python Debugger), IDEs con depuradores visuales, prints de depuración.</p>
+            
+            <h3>Ejemplo de Depuración en C</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Depuración en C con printf</span>
+                    <button class="copy-btn" onclick="copyCode('c-debug')">Copiar código</button>
+                </div>
+                <pre><code id="c-debug" class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    int valores[5] = {10, 20, 30, 40, 50};
+    int suma = 0;
+    
+    printf("Depuración: Iniciando bucle...\n");
+    
+    for (int i = 0; i < 5; i++) {
+        printf("Depuración: i = %d, valores[%d] = %d\n", i, i, valores[i]);
+        suma += valores[i];
+        printf("Depuración: suma parcial = %d\n", suma);
+    }
+    
+    printf("Suma total: %d\n", suma);
+    
+    return 0;
+}</code></pre>
+            </div>
+            
+            <h3>Ejemplo de Depuración en Python</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>Depuración en Python con print</span>
+                    <button class="copy-btn" onclick="copyCode('python-debug')">Copiar código</button>
+                </div>
+                <pre><code id="python-debug" class="language-python">valores = [10, 20, 30, 40, 50]
+suma = 0
+
+print("Depuración: Iniciando bucle...")
+
+for i, valor in enumerate(valores):
+    print(f"Depuración: i = {i}, valor = {valor}")
+    suma += valor
+    print(f"Depuración: suma parcial = {suma}")
+
+print(f"Suma total: {suma}")</code></pre>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <div class="video-placeholder">
+                <i class="fas fa-video"></i> Video: Introducción a Python
+            </div>
+            <div class="video-placeholder">
+                <i class="fas fa-video"></i> Video: Fundamentos de C
+            </div>
+        </div>
+
+        <div class="interactive-box">
+            <h2>Prueba tu código en C</h2>
+            <p>Escribe tu código C en el siguiente área y ejecútalo para ver el resultado:</p>
+            <textarea id="code">#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hola desde C!\n");
+    
+    // Ejemplo de operaciones
+    int a = 15, b = 4;
+    printf("Suma: %d + %d = %d\n", a, b, a + b);
+    printf("Resta: %d - %d = %d\n", a, b, a - b);
+    printf("Multiplicación: %d * %d = %d\n", a, b, a * b);
+    printf("División: %d / %d = %.2f\n", a, b, (float)a / b);
+    
+    return 0;
+}</textarea>
+            <br>
+            <button class="run-btn" onclick="runCode()">Ejecutar código</button>
+            
+            <div class="output-container">
+                <div class="output-title">Salida del programa:</div>
+                <pre id="output"></pre>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Documento técnico: Entorno del Lenguaje de Programación - Python y C</p>
+            <p>Fuentes: Documentación oficial de Python, CPPReference.com, GeeksforGeeks, TutorialsPoint</p>
+        </div>
+    </footer>
+
+    <script>
+        // Función para copiar código al portapapeles
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const textArea = document.createElement('textarea');
+            textArea.value = codeElement.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Mostrar confirmación
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = '¡Copiado!';
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 1500);
+        }
+        
+        // Función para ejecutar código C (simulado)
+        function runCode() {
+            const outputElement = document.getElementById('output');
+            outputElement.textContent = "Ejecutando código C...\n\n";
+            
+            // Simulación de ejecución de código C
+            setTimeout(() => {
+                outputElement.textContent += "Hola desde C!\n";
+                outputElement.textContent += "Suma: 15 + 4 = 19\n";
+                outputElement.textContent += "Resta: 15 - 4 = 11\n";
+                outputElement.textContent += "Multiplicación: 15 * 4 = 60\n";
+                outputElement.textContent += "División: 15 / 4 = 3.75\n";
+                outputElement.textContent += "\nPrograma ejecutado con éxito.";
+            }, 800);
+        }
+    </script>
 </body>
 </html>
-
