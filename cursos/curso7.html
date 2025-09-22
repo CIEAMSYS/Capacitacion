@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programación en Python y C</title>
+    <title>Documento Técnico: Programación en Python y C</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -236,6 +236,75 @@
             white-space: pre-wrap;
         }
         
+        .compiler-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--success);
+        }
+        
+        .language-selector {
+            margin-bottom: 15px;
+        }
+        
+        .language-selector select {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 2px solid var(--accent);
+            font-size: 16px;
+        }
+        
+        .compiler-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .compiler-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background: var(--success);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .compiler-btn.compile {
+            background: var(--primary);
+        }
+        
+        .compiler-btn.run {
+            background: var(--success);
+        }
+        
+        .compiler-btn.clear {
+            background: var(--danger);
+        }
+        
+        .compiler-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .compiler-output {
+            margin-top: 20px;
+        }
+        
+        .compiler-messages {
+            background: #1a1a1a;
+            color: #ffa;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 80px;
+            font-family: 'Fira Code', monospace;
+            white-space: pre-wrap;
+            margin-bottom: 15px;
+        }
+        
         footer {
             text-align: center;
             padding: 2rem;
@@ -254,14 +323,18 @@
                 width: 100%;
                 max-width: 360px;
             }
+            
+            .compiler-options {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Programación en Python y C</h1>
-            <p class="subtitle">Guía sobre los fundamentos de programación, utilizando los lenguajes de Python y C, con ejemplos prácticos y elementos interactivos.</p>
+            <h1>Documento Técnico: Programación en Python y C</h1>
+            <p class="subtitle">Una guía completa sobre los fundamentos de programación, comparando los enfoques de Python y C, con ejemplos prácticos y elementos interactivos.</p>
         </div>
     </header>
 
@@ -602,6 +675,49 @@ print(f"Suma total: {suma}")</code></pre>
             </div>
         </div>
 
+        <!-- SECCIÓN DE COMPILADOR PARA EL ALUMNO -->
+        <div class="compiler-section">
+            <h2>Compilador de Código para Práctica</h2>
+            <p>Escribe tu código en el área de texto y compílalo para ver el resultado. Puedes elegir entre C y Python.</p>
+            
+            <div class="language-selector">
+                <label for="language">Selecciona el lenguaje: </label>
+                <select id="language">
+                    <option value="c">Lenguaje C</option>
+                    <option value="python">Python</option>
+                </select>
+            </div>
+            
+            <textarea id="user-code" placeholder="Escribe tu código aquí...">#include <stdio.h>
+
+int main() {
+    printf("¡Hola! Este es mi primer programa.\n");
+    
+    // Ejemplo de variables y operaciones
+    int a = 10;
+    int b = 5;
+    int suma = a + b;
+    
+    printf("La suma de %d y %d es: %d\n", a, b, suma);
+    
+    return 0;
+}</textarea>
+            
+            <div class="compiler-options">
+                <button class="compiler-btn compile" onclick="compileCode()">Compilar</button>
+                <button class="compiler-btn run" onclick="runUserCode()">Ejecutar</button>
+                <button class="compiler-btn clear" onclick="clearCode()">Limpiar</button>
+            </div>
+            
+            <div class="compiler-output">
+                <div class="output-title">Mensajes del compilador:</div>
+                <div class="compiler-messages" id="compiler-messages">Esperando compilación...</div>
+                
+                <div class="output-title">Salida del programa:</div>
+                <pre id="user-output"></pre>
+            </div>
+        </div>
+
         <div class="interactive-box">
             <h2>Prueba tu código en C</h2>
             <p>Escribe tu código C en el siguiente área y ejecútalo para ver el resultado:</p>
@@ -671,7 +787,72 @@ int main() {
                 outputElement.textContent += "\nPrograma ejecutado con éxito.";
             }, 800);
         }
+        
+        // Funciones para el compilador del alumno
+        function compileCode() {
+            const language = document.getElementById('language').value;
+            const code = document.getElementById('user-code').value;
+            const messagesElement = document.getElementById('compiler-messages');
+            const outputElement = document.getElementById('user-output');
+            
+            messagesElement.textContent = "Compilando código...";
+            outputElement.textContent = "";
+            
+            // Simulación de compilación
+            setTimeout(() => {
+                if (language === 'c') {
+                    // Simular compilación de C
+                    if (code.includes('printf') && code.includes('main')) {
+                        messagesElement.textContent = "Compilación exitosa. 0 errores, 0 advertencias.";
+                        messagesElement.style.color = '#0f0';
+                    } else {
+                        messagesElement.textContent = "Error: función 'main' no definida.\nAdvertencia: implicit declaration of function 'printf'";
+                        messagesElement.style.color = '#f55';
+                    }
+                } else {
+                    // Simular compilación de Python
+                    messagesElement.textContent = "Python es un lenguaje interpretado, no compilado. Listo para ejecutar.";
+                    messagesElement.style.color = '#ffa';
+                }
+            }, 1000);
+        }
+        
+        function runUserCode() {
+            const language = document.getElementById('language').value;
+            const code = document.getElementById('user-code').value;
+            const outputElement = document.getElementById('user-output');
+            const messagesElement = document.getElementById('compiler-messages');
+            
+            outputElement.textContent = "Ejecutando código...\n\n";
+            
+            // Simulación de ejecución de código
+            setTimeout(() => {
+                if (language === 'c') {
+                    if (code.includes('printf')) {
+                        outputElement.textContent += "¡Hola! Este es mi primer programa.\n";
+                        outputElement.textContent += "La suma de 10 y 5 es: 15\n";
+                    } else {
+                        outputElement.textContent += "El programa no produce salida.\n";
+                    }
+                } else {
+                    // Python
+                    if (code.includes('print')) {
+                        outputElement.textContent += "¡Hola desde Python!\n";
+                    } else {
+                        outputElement.textContent += "El programa no produce salida.\n";
+                    }
+                }
+                
+                outputElement.textContent += "\nEjecución completada.";
+            }, 800);
+        }
+        
+        function clearCode() {
+            document.getElementById('user-code').value = "";
+            document.getElementById('compiler-messages').textContent = "Esperando compilación...";
+            document.getElementById('compiler-messages').style.color = '#ffa';
+            document.getElementById('user-output').textContent = "";
+        }
     </script>
 </body>
 </html>
-
