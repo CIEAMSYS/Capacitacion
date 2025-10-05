@@ -2,40 +2,42 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Curso - Sistemas Mecatronicos</title>
+  <title>Curso 1 - Introducción a la Mecatrónica</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; background: #fafafa; }
     header { background: #0077cc; color: #fff; padding: 20px; border-radius: 12px; }
     header h1 { margin: 0; }
-    .contenido { margin-top: 20px; line-height: 1.6; }
-    iframe { display: block; margin: 20px auto; max-width: 100%; border-radius: 12px; }
+    details { margin: 15px 0; background: #fff; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    summary { cursor: pointer; padding: 10px; font-weight: bold; background: #eaeaea; border-radius: 10px; }
+    details p, details iframe { padding: 15px; margin: 0; }
+    iframe { display: block; margin: auto; max-width: 100%; border-radius: 12px; }
     a.volver { display: inline-block; margin-top: 20px; background: #222; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 8px; }
     a.volver:hover { background: #444; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Curso: Sistemas Mecatronicos</h1>
+    <h1>Curso 1: Introducción a la Mecatrónica</h1>
   </header>
 
   <div class="contenido">
-    <p>Bienvenido al curso de Sistemas Mecatrónicos. Aquí aprenderás los fundamentos básicos.</p>
+    <p>Bienvenido al primer curso de Mecatrónica. Aquí aprenderás los fundamentos básicos.</p>
 
-    <h2>📹 Video de Introducción</h2>
-    <!-- Incrustar video de YouTube -->
-    <iframe width="560" height="315" 
-            src="https://www.youtube.com/embed/watch?v=rbCQMfklcG8" 
-            title="Instalacion OpenPLC" 
-            frameborder="0" allowfullscreen>
-    </iframe>
+    <details>
+      <summary>📹 Video de Introducción</summary>
+      <iframe width="560" height="315" 
+              src="https://www.youtube.com/embed/ID_DEL_VIDEO" 
+              title="Video de Introducción" 
+              frameborder="0" allowfullscreen>
+      </iframe>
+    </details>
 
-    <h2>📘 Contenido del curso</h2>
-    <p>Aquí puedes escribir el contenido del curso, agregar imágenes, texto o más videos.</p>
+    <details>
+      <summary>📘 Contenido del curso</summary>
+      <p>Aquí puedes escribir el contenido del curso, agregar imágenes, texto o más videos.</p>
+    </details>
   </div>
 
   <a href="../index.html" class="volver">⬅ Volver al inicio</a>
 </body>
 </html>
-
-
-
