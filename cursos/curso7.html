@@ -26,7 +26,6 @@
       font-size: 14px;
       border-radius: 8px;
       padding: 10px;
-      border: 1px solid #ddd;
     }
     button {
       margin-top: 10px;
@@ -37,63 +36,21 @@
       color: white;
       font-size: 16px;
       cursor: pointer;
-      transition: background 0.3s;
     }
     button:hover { background: #005fa3; }
     pre {
       background: #111;
       color: #0f0;
-      padding: 15px;
+      padding: 10px;
       border-radius: 8px;
       overflow-x: auto;
-      min-height: 60px;
-      border: 1px solid #333;
     }
     .content-box {
       background: white;
-      padding: 20px;
+      padding: 15px;
       margin-bottom: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .chapter {
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #eee;
-    }
-    .chapter h2 {
-      border-bottom: 2px solid #0077cc;
-      padding-bottom: 5px;
-      color: #0077cc;
-    }
-    .code-example {
-      background: #f8f9fa;
-      border-left: 4px solid #0077cc;
-      padding: 15px;
-      margin: 15px 0;
-      font-family: 'Courier New', monospace;
-      white-space: pre-wrap;
-      border-radius: 4px;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    .try-button {
-      background: #28a745;
-      margin: 5px 0 15px 0;
-    }
-    .try-button:hover {
-      background: #218838;
-    }
-    .code-header {
-      background: #0077cc;
-      color: white;
-      padding: 8px 15px;
-      margin: -15px -15px 15px -15px;
-      border-radius: 4px 4px 0 0;
-      font-weight: bold;
-    }
-    .example-container {
-      margin: 20px 0;
     }
   </style>
 </head>
@@ -115,53 +72,36 @@
     </p>
   </div>
 
-  <!-- SECCIÓN ORIGINAL DE EJECUCIÓN DE CÓDIGO -->
+  <!-- CAJÓN DE CÓDIGO -->
   <div class="content-box">
     <h2>Prueba tu código en C</h2>
     <textarea id="code">
 #include <stdio.h>
-
 int main() {
-    printf("¡Hola desde C!\n");
-    printf("Este código se ejecuta en tu navegador.\n");
-    
-    int a = 5;
-    int b = 3;
-    int suma = a + b;
-    printf("La suma de %d + %d = %d\n", a, b, suma);
-    
+    printf("Hola desde C en GitHub Pages!\n");
     return 0;
 }
     </textarea>
     <br>
-    <button onclick="runCode()">Ejecutar Código</button>
+    <button onclick="runCode()">Ejecutar</button>
     <h3>Salida del programa:</h3>
-    <pre id="output">La salida aparecerá aquí...</pre>
+    <pre id="output"></pre>
   </div>
 
-  <!-- CAPÍTULOS DE PROGRAMACIÓN -->
+  <!-- TODOS LOS CÓDIGOS DE LOS CAPÍTULOS -->
   <div class="content-box">
-    <h1>Capítulos de Programación en C</h1>
+    <h2>Capítulo 1: Introducción a C - Códigos</h2>
     
-    <!-- Capítulo 1 -->
-    <div class="chapter">
-      <h2>Capítulo 1: Introducción a C</h2>
-      <p>El lenguaje C es un lenguaje de programación de propósito general desarrollado en 1972 por Dennis Ritchie en los Laboratorios Bell. Es uno de los lenguajes más utilizados y ha influido en muchos otros lenguajes como C++, Java y C#.</p>
-      
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 1.1: Hola Mundo</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 1.1: Hola Mundo</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 int main() {
     printf("¡Hola, mundo!\n");
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example1_1')">Probar este código</button>
-      </div>
+}</pre>
 
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 1.2: Suma básica</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 1.2: Suma básica</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 int main() {
     int a = 5;
@@ -170,19 +110,25 @@ int main() {
     
     printf("La suma de %d + %d = %d\n", a, b, suma);
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example1_2')">Probar este código</button>
-      </div>
-    </div>
+}</pre>
+
+    <h3>Ejemplo 1.3: Entrada de usuario</h3>
+    <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int numero;
+    printf("Ingresa un número: ");
+    scanf("%d", &numero);
+    printf("Ingresaste: %d\n", numero);
+    return 0;
+}</pre>
+  </div>
+
+  <div class="content-box">
+    <h2>Capítulo 2: Variables y Tipos de Datos - Códigos</h2>
     
-    <!-- Capítulo 2 -->
-    <div class="chapter">
-      <h2>Capítulo 2: Variables y Tipos de Datos</h2>
-      <p>En C, las variables son contenedores para almacenar datos. Cada variable tiene un tipo específico que determina el tamaño y formato de los datos que puede contener.</p>
-      
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 2.1: Tipos de datos básicos</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 2.1: Tipos de datos básicos</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 int main() {
     int entero = 10;
@@ -198,13 +144,10 @@ int main() {
     printf("Cadena: %s\n", cadena);
     
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example2_1')">Probar este código</button>
-      </div>
+}</pre>
 
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 2.2: Constantes y operaciones</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 2.2: Constantes y operaciones</h3>
+    <pre>#include &lt;stdio.h&gt;
 #define PI 3.14159
 
 int main() {
@@ -216,19 +159,30 @@ int main() {
     printf("Área del círculo (radio=%.1f): %.2f\n", radio, area);
     
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example2_2')">Probar este código</button>
-      </div>
-    </div>
+}</pre>
+
+    <h3>Ejemplo 2.3: Operadores</h3>
+    <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 15, b = 4;
     
-    <!-- Capítulo 3 -->
-    <div class="chapter">
-      <h2>Capítulo 3: Estructuras de Control</h2>
-      <p>Las estructuras de control permiten dirigir el flujo de ejecución de un programa. En C tenemos condicionales (if/else, switch) y bucles (for, while, do-while).</p>
-      
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 3.1: Condicional if-else</div>#include &lt;stdio.h&gt;
+    printf("a = %d, b = %d\n", a, b);
+    printf("Suma: %d\n", a + b);
+    printf("Resta: %d\n", a - b);
+    printf("Multiplicación: %d\n", a * b);
+    printf("División: %d\n", a / b);
+    printf("Módulo: %d\n", a % b);
+    
+    return 0;
+}</pre>
+  </div>
+
+  <div class="content-box">
+    <h2>Capítulo 3: Estructuras de Control - Códigos</h2>
+    
+    <h3>Ejemplo 3.1: Condicional if-else</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 int main() {
     int edad = 18;
@@ -244,13 +198,10 @@ int main() {
     printf("Estado: %s\n", mensaje);
     
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example3_1')">Probar este código</button>
-      </div>
+}</pre>
 
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 3.2: Bucle for y while</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 3.2: Bucle for y while</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 int main() {
     int i;
@@ -267,14 +218,18 @@ int main() {
         contador--;
     }
     
+    printf("\nBucle do-while:\n");
+    int numero = 3;
+    do {
+        printf("Número: %d\n", numero);
+        numero--;
+    } while(numero > 0);
+    
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example3_2')">Probar este código</button>
-      </div>
+}</pre>
 
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 3.3: Switch case</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 3.3: Switch case</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 int main() {
     int opcion = 2;
@@ -294,19 +249,36 @@ int main() {
     }
     
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example3_3')">Probar este código</button>
-      </div>
-    </div>
+}</pre>
+
+    <h3>Ejemplo 3.4: Break y continue</h3>
+    <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int i;
     
-    <!-- Capítulo 4 -->
-    <div class="chapter">
-      <h2>Capítulo 4: Funciones</h2>
-      <p>Las funciones permiten dividir un programa en partes más pequeñas y manejables. Cada función realiza una tarea específica y puede ser reutilizada.</p>
-      
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 4.1: Función básica</div>#include &lt;stdio.h&gt;
+    printf("Uso de break:\n");
+    for(i = 1; i <= 10; i++) {
+        if(i == 5) break;
+        printf("%d ", i);
+    }
+    
+    printf("\n\nUso de continue:\n");
+    for(i = 1; i <= 10; i++) {
+        if(i % 2 == 0) continue;
+        printf("%d ", i);
+    }
+    printf("\n");
+    
+    return 0;
+}</pre>
+  </div>
+
+  <div class="content-box">
+    <h2>Capítulo 4: Funciones - Códigos</h2>
+    
+    <h3>Ejemplo 4.1: Función básica</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 // Declaración de función
 int sumar(int a, int b);
@@ -320,13 +292,10 @@ int main() {
 // Definición de función
 int sumar(int a, int b) {
     return a + b;
-}</div>
-        <button class="try-button" onclick="loadExample('example4_1')">Probar este código</button>
-      </div>
+}</pre>
 
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 4.2: Función recursiva (factorial)</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 4.2: Función recursiva (factorial)</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 long factorial(int n);
 
@@ -340,19 +309,44 @@ int main() {
 long factorial(int n) {
     if(n <= 1) return 1;
     return n * factorial(n - 1);
-}</div>
-        <button class="try-button" onclick="loadExample('example4_2')">Probar este código</button>
-      </div>
-    </div>
+}</pre>
+
+    <h3>Ejemplo 4.3: Función con múltiples parámetros</h3>
+    <pre>#include &lt;stdio.h&gt;
+
+void imprimirInfo(char nombre[], int edad, float altura);
+
+int main() {
+    imprimirInfo("Ana", 25, 1.68);
+    imprimirInfo("Carlos", 30, 1.75);
+    return 0;
+}
+
+void imprimirInfo(char nombre[], int edad, float altura) {
+    printf("Nombre: %s, Edad: %d, Altura: %.2f\n", nombre, edad, altura);
+}</pre>
+
+    <h3>Ejemplo 4.4: Función con retorno</h3>
+    <pre>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+double calcularHipotenusa(double a, double b) {
+    return sqrt(a * a + b * b);
+}
+
+int main() {
+    double cateto1 = 3.0, cateto2 = 4.0;
+    double hipotenusa = calcularHipotenusa(cateto1, cateto2);
+    printf("Hipotenusa: %.2f\n", hipotenusa);
+    return 0;
+}</pre>
+  </div>
+
+  <div class="content-box">
+    <h2>Capítulo 5: Arreglos y Cadenas - Códigos</h2>
     
-    <!-- Capítulo 5 -->
-    <div class="chapter">
-      <h2>Capítulo 5: Arreglos y Cadenas</h2>
-      <p>Los arreglos son estructuras de datos que almacenan múltiples valores del mismo tipo. Las cadenas en C son arreglos de caracteres terminados con el carácter nulo '\0'.</p>
-      
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 5.1: Arreglo de enteros</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 5.1: Arreglo de enteros</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 int main() {
     int numeros[5] = {10, 20, 30, 40, 50};
@@ -371,13 +365,10 @@ int main() {
     printf("%d\n", suma);
     
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example5_1')">Probar este código</button>
-      </div>
+}</pre>
 
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 5.2: Manejo de cadenas</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 5.2: Manejo de cadenas</h3>
+    <pre>#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -394,20 +385,66 @@ int main() {
     printf("Cadena resultante: %s\n", mensaje);
     printf("Longitud: %zu\n", strlen(mensaje));
     
-    return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example5_2')">Probar este código</button>
-      </div>
-    </div>
+    // Comparar cadenas
+    if(strcmp(saludo, "Hola") == 0) {
+        printf("El saludo es 'Hola'\n");
+    }
     
-    <!-- Capítulo 6 -->
-    <div class="chapter">
-      <h2>Capítulo 6: Punteros</h2>
-      <p>Los punteros son variables que almacenan direcciones de memoria. Son una de las características más poderosas (y complejas) de C.</p>
-      
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 6.1: Punteros básicos</div>#include &lt;stdio.h&gt;
+    return 0;
+}</pre>
+
+    <h3>Ejemplo 5.3: Arreglo bidimensional (matriz)</h3>
+    <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int matriz[3][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+    
+    int i, j;
+    printf("Matriz 3x3:\n");
+    for(i = 0; i < 3; i++) {
+        for(j = 0; j < 3; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}</pre>
+
+    <h3>Ejemplo 5.4: Búsqueda en arreglo</h3>
+    <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int numeros[] = {10, 23, 45, 67, 89, 12, 34};
+    int tamaño = 7;
+    int buscar = 45;
+    int encontrado = 0;
+    
+    for(int i = 0; i < tamaño; i++) {
+        if(numeros[i] == buscar) {
+            printf("Número %d encontrado en posición %d\n", buscar, i);
+            encontrado = 1;
+            break;
+        }
+    }
+    
+    if(!encontrado) {
+        printf("Número %d no encontrado\n", buscar);
+    }
+    
+    return 0;
+}</pre>
+  </div>
+
+  <div class="content-box">
+    <h2>Capítulo 6: Punteros - Códigos</h2>
+    
+    <h3>Ejemplo 6.1: Punteros básicos</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 int main() {
     int numero = 42;
@@ -423,13 +460,10 @@ int main() {
     printf("Nuevo valor de numero: %d\n", numero);
     
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example6_1')">Probar este código</button>
-      </div>
+}</pre>
 
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 6.2: Punteros y arreglos</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 6.2: Punteros y arreglos</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 int main() {
     int arr[5] = {1, 2, 3, 4, 5};
@@ -440,20 +474,65 @@ int main() {
         printf("arr[%d] = %d, *(ptr + %d) = %d\n", i, arr[i], i, *(ptr + i));
     }
     
-    return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example6_2')">Probar este código</button>
-      </div>
-    </div>
+    printf("\nUsando aritmética de punteros:\n");
+    for(ptr = arr; ptr < arr + 5; ptr++) {
+        printf("%d ", *ptr);
+    }
+    printf("\n");
     
-    <!-- Capítulo 7 -->
-    <div class="chapter">
-      <h2>Capítulo 7: Estructuras y Uniones</h2>
-      <p>Las estructuras (struct) permiten agrupar variables de diferentes tipos bajo un mismo nombre. Las uniones (union) son similares pero comparten la misma ubicación de memoria.</p>
-      
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 7.1: Estructura básica</div>#include &lt;stdio.h&gt;
+    return 0;
+}</pre>
+
+    <h3>Ejemplo 6.3: Punteros a funciones</h3>
+    <pre>#include &lt;stdio.h&gt;
+
+int sumar(int a, int b) {
+    return a + b;
+}
+
+int multiplicar(int a, int b) {
+    return a * b;
+}
+
+int main() {
+    int (*operacion)(int, int);  // Puntero a función
+    
+    operacion = sumar;
+    printf("Suma: %d\n", operacion(5, 3));
+    
+    operacion = multiplicar;
+    printf("Multiplicación: %d\n", operacion(5, 3));
+    
+    return 0;
+}</pre>
+
+    <h3>Ejemplo 6.4: Puntero a puntero</h3>
+    <pre>#include &lt;stdio.h&gt;
+
+int main() {
+    int valor = 100;
+    int *ptr = &valor;
+    int **pptr = &ptr;
+    
+    printf("Valor: %d\n", valor);
+    printf("*ptr: %d\n", *ptr);
+    printf("**pptr: %d\n", **pptr);
+    
+    printf("\nDirecciones:\n");
+    printf("&valor: %p\n", &valor);
+    printf("ptr: %p\n", ptr);
+    printf("&ptr: %p\n", &ptr);
+    printf("pptr: %p\n", pptr);
+    
+    return 0;
+}</pre>
+  </div>
+
+  <div class="content-box">
+    <h2>Capítulo 7: Estructuras y Uniones - Códigos</h2>
+    
+    <h3>Ejemplo 7.1: Estructura básica</h3>
+    <pre>#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 // Definición de estructura
@@ -476,13 +555,10 @@ int main() {
     printf("Promedio: %.1f\n", estudiante1.promedio);
     
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example7_1')">Probar este código</button>
-      </div>
+}</pre>
 
-      <div class="example-container">
-        <div class="code-example">
-<div class="code-header">Ejemplo 7.2: Arreglo de estructuras</div>#include &lt;stdio.h&gt;
+    <h3>Ejemplo 7.2: Arreglo de estructuras</h3>
+    <pre>#include &lt;stdio.h&gt;
 
 struct Punto {
     int x;
@@ -502,311 +578,77 @@ int main() {
     }
     
     return 0;
-}</div>
-        <button class="try-button" onclick="loadExample('example7_2')">Probar este código</button>
-      </div>
-    </div>
+}</pre>
+
+    <h3>Ejemplo 7.3: Uniones</h3>
+    <pre>#include &lt;stdio.h&gt;
+
+union Dato {
+    int entero;
+    float decimal;
+    char caracter;
+};
+
+int main() {
+    union Dato dato;
+    
+    dato.entero = 10;
+    printf("Valor entero: %d\n", dato.entero);
+    
+    dato.decimal = 3.14;
+    printf("Valor decimal: %.2f\n", dato.decimal);
+    
+    dato.caracter = 'A';
+    printf("Valor caracter: %c\n", dato.caracter);
+    
+    // Solo el último valor asignado es válido
+    printf("Entero después de cambiar: %d (valor incorrecto)\n", dato.entero);
+    
+    return 0;
+}</pre>
+
+    <h3>Ejemplo 7.4: Estructuras con punteros</h3>
+    <pre>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+struct Libro {
+    char titulo[100];
+    char autor[50];
+    int año;
+};
+
+int main() {
+    struct Libro *libroPtr = malloc(sizeof(struct Libro));
+    
+    strcpy(libroPtr->titulo, "C Programming");
+    strcpy(libroPtr->autor, "Dennis Ritchie");
+    libroPtr->año = 1978;
+    
+    printf("Libro:\n");
+    printf("Título: %s\n", libroPtr->titulo);
+    printf("Autor: %s\n", libroPtr->autor);
+    printf("Año: %d\n", libroPtr->año);
+    
+    free(libroPtr);
+    return 0;
+}</pre>
   </div>
 
-  <!-- Script para ejecución de código C -->
+  <!-- Motor C en WebAssembly -->
+  <script src="https://bellard.org/quickjs/qjs-modules/c.js"></script>
   <script>
-    // Códigos de ejemplo para cada capítulo
-    const examples = {
-      'example1_1': `#include <stdio.h>
-
-int main() {
-    printf("¡Hola, mundo!\\n");
-    return 0;
-}`,
-
-      'example1_2': `#include <stdio.h>
-
-int main() {
-    int a = 5;
-    int b = 3;
-    int suma = a + b;
-    
-    printf("La suma de %d + %d = %d\\n", a, b, suma);
-    return 0;
-}`,
-
-      'example2_1': `#include <stdio.h>
-
-int main() {
-    int entero = 10;
-    float decimal = 3.14;
-    double doble = 3.141592;
-    char caracter = 'A';
-    char cadena[] = "Hola C";
-    
-    printf("Entero: %d\\n", entero);
-    printf("Float: %.2f\\n", decimal);
-    printf("Double: %.6f\\n", doble);
-    printf("Caracter: %c\\n", caracter);
-    printf("Cadena: %s\\n", cadena);
-    
-    return 0;
-}`,
-
-      'example2_2': `#include <stdio.h>
-#define PI 3.14159
-
-int main() {
-    const int DIAS_SEMANA = 7;
-    float radio = 5.0;
-    float area = PI * radio * radio;
-    
-    printf("Días en una semana: %d\\n", DIAS_SEMANA);
-    printf("Área del círculo (radio=%.1f): %.2f\\n", radio, area);
-    
-    return 0;
-}`,
-
-      'example3_1': `#include <stdio.h>
-
-int main() {
-    int edad = 18;
-    
-    if(edad >= 18) {
-        printf("Eres mayor de edad\\n");
-    } else {
-        printf("Eres menor de edad\\n");
-    }
-    
-    return 0;
-}`,
-
-      'example3_2': `#include <stdio.h>
-
-int main() {
-    int i;
-    
-    printf("Bucle for:\\n");
-    for(i = 1; i <= 5; i++) {
-        printf("Número: %d\\n", i);
-    }
-    
-    printf("\\nBucle while:\\n");
-    int contador = 5;
-    while(contador > 0) {
-        printf("Contador: %d\\n", contador);
-        contador--;
-    }
-    
-    return 0;
-}`,
-
-      'example3_3': `#include <stdio.h>
-
-int main() {
-    int opcion = 2;
-    
-    switch(opcion) {
-        case 1:
-            printf("Opción 1 seleccionada\\n");
-            break;
-        case 2:
-            printf("Opción 2 seleccionada\\n");
-            break;
-        case 3:
-            printf("Opción 3 seleccionada\\n");
-            break;
-        default:
-            printf("Opción no válida\\n");
-    }
-    
-    return 0;
-}`,
-
-      'example4_1': `#include <stdio.h>
-
-// Declaración de función
-int sumar(int a, int b);
-
-int main() {
-    int resultado = sumar(8, 12);
-    printf("La suma es: %d\\n", resultado);
-    return 0;
-}
-
-// Definición de función
-int sumar(int a, int b) {
-    return a + b;
-}`,
-
-      'example4_2': `#include <stdio.h>
-
-long factorial(int n);
-
-int main() {
-    int numero = 5;
-    long fact = factorial(numero);
-    printf("El factorial de %d es %ld\\n", numero, fact);
-    return 0;
-}
-
-long factorial(int n) {
-    if(n <= 1) return 1;
-    return n * factorial(n - 1);
-}`,
-
-      'example5_1': `#include <stdio.h>
-
-int main() {
-    int numeros[5] = {10, 20, 30, 40, 50};
-    int i;
-    
-    printf("Elementos del arreglo:\\n");
-    for(i = 0; i < 5; i++) {
-        printf("numeros[%d] = %d\\n", i, numeros[i]);
-    }
-    
-    printf("\\nSuma de elementos: ");
-    int suma = 0;
-    for(i = 0; i < 5; i++) {
-        suma += numeros[i];
-    }
-    printf("%d\\n", suma);
-    
-    return 0;
-}`,
-
-      'example5_2': `#include <stdio.h>
-#include <string.h>
-
-int main() {
-    char saludo[20] = "Hola";
-    char nombre[] = "Mundo";
-    char mensaje[50];
-    
-    // Concatenar cadenas
-    strcpy(mensaje, saludo);
-    strcat(mensaje, " ");
-    strcat(mensaje, nombre);
-    strcat(mensaje, "!");
-    
-    printf("Cadena resultante: %s\\n", mensaje);
-    printf("Longitud: %zu\\n", strlen(mensaje));
-    
-    return 0;
-}`,
-
-      'example6_1': `#include <stdio.h>
-
-int main() {
-    int numero = 42;
-    int *p = &numero;
-    
-    printf("Valor de numero: %d\\n", numero);
-    printf("Dirección de numero: %p\\n", &numero);
-    printf("Valor del puntero p: %p\\n", p);
-    printf("Valor al que apunta p: %d\\n", *p);
-    
-    // Modificar valor a través del puntero
-    *p = 100;
-    printf("Nuevo valor de numero: %d\\n", numero);
-    
-    return 0;
-}`,
-
-      'example6_2': `#include <stdio.h>
-
-int main() {
-    int arr[5] = {1, 2, 3, 4, 5};
-    int *ptr = arr;  // ptr apunta al primer elemento
-    
-    printf("Acceso mediante puntero:\\n");
-    for(int i = 0; i < 5; i++) {
-        printf("arr[%d] = %d, *(ptr + %d) = %d\\n", i, arr[i], i, *(ptr + i));
-    }
-    
-    return 0;
-}`,
-
-      'example7_1': `#include <stdio.h>
-#include <string.h>
-
-// Definición de estructura
-struct Estudiante {
-    char nombre[50];
-    int edad;
-    float promedio;
-};
-
-int main() {
-    // Declaración e inicialización
-    struct Estudiante estudiante1;
-    strcpy(estudiante1.nombre, "María López");
-    estudiante1.edad = 20;
-    estudiante1.promedio = 8.5;
-    
-    printf("Estudiante:\\n");
-    printf("Nombre: %s\\n", estudiante1.nombre);
-    printf("Edad: %d\\n", estudiante1.edad);
-    printf("Promedio: %.1f\\n", estudiante1.promedio);
-    
-    return 0;
-}`,
-
-      'example7_2': `#include <stdio.h>
-
-struct Punto {
-    int x;
-    int y;
-};
-
-int main() {
-    struct Punto puntos[3] = {
-        {1, 2},
-        {3, 4},
-        {5, 6}
-    };
-    
-    printf("Coordenadas de puntos:\\n");
-    for(int i = 0; i < 3; i++) {
-        printf("Punto %d: (%d, %d)\\n", i+1, puntos[i].x, puntos[i].y);
-    }
-    
-    return 0;
-}`
-    };
-
-    // Función para cargar ejemplos en el editor
-    function loadExample(exampleId) {
-      document.getElementById("code").value = examples[exampleId];
-      // Desplazar hacia el editor de código
-      document.getElementById("code").scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Función para ejecutar código C (simulada)
-    function runCode() {
+    async function runCode() {
       const code = document.getElementById("code").value;
       const output = document.getElementById("output");
-      
-      output.textContent = "Ejecutando código...\n";
-      
-      // Simulación de ejecución - en un entorno real aquí se conectaría con WebAssembly
-      setTimeout(() => {
-        // Extraer los printf del código para simular la salida
-        const lines = code.split('\n');
-        let simulatedOutput = "";
-        
-        for (let line of lines) {
-          if (line.includes('printf(')) {
-            // Extraer el texto entre comillas del printf
-            const match = line.match(/printf\("([^"]*)"\)/);
-            if (match) {
-              simulatedOutput += match[1].replace(/\\n/g, '\n') + '\n';
-            }
-          }
-        }
-        
-        if (simulatedOutput === "") {
-          simulatedOutput = "El programa se ejecutó correctamente, pero no hay salida visible.\n";
-        }
-        
-        output.textContent = simulatedOutput;
-      }, 1000);
+      output.textContent = "Compilando...\n";
+
+      try {
+        const result = await CRunner.run(code);
+        output.textContent = result.output;
+      } catch (err) {
+        output.textContent = "Error: " + err.message;
+      }
     }
   </script>
 </body>
