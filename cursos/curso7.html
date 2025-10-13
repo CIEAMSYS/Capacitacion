@@ -4,14 +4,22 @@
   <meta charset="UTF-8">
   <title>Curso Completo de Programación en C</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
     body { 
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
       margin: 0; 
-      padding: 20px; 
+      padding: 0; 
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #333;
       line-height: 1.6;
+      min-height: 100vh;
     }
+    
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -19,23 +27,29 @@
       border-radius: 15px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       overflow: hidden;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
+    
     header {
       background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
       color: white;
       padding: 30px;
       text-align: center;
     }
+    
     h1 {
       margin: 0;
       font-size: 2.5rem;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
+    
     .subtitle {
       font-size: 1.2rem;
       opacity: 0.9;
       margin-top: 10px;
     }
+    
     .video-container {
       display: flex;
       gap: 20px;
@@ -43,6 +57,7 @@
       margin: 20px;
       justify-content: center;
     }
+    
     iframe {
       width: 360px;
       height: 200px;
@@ -50,6 +65,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
+    
     .content-box {
       background: white;
       padding: 20px;
@@ -58,16 +74,19 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       border-left: 5px solid #3498db;
     }
+    
     .content-box h2 {
       color: #2c3e50;
       border-bottom: 2px solid #f1f1f1;
       padding-bottom: 10px;
       margin-top: 0;
     }
+    
     .content-box h3 {
       color: #3498db;
       margin-top: 25px;
     }
+    
     textarea {
       width: 100%;
       height: 200px;
@@ -79,6 +98,7 @@
       resize: vertical;
       box-sizing: border-box;
     }
+    
     button {
       margin-top: 10px;
       padding: 12px 24px;
@@ -92,23 +112,29 @@
       transition: all 0.3s ease;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
+    
     button:hover { 
       background: #2980b9;
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
+    
     .copy-btn {
       background: #27ae60;
     }
+    
     .copy-btn:hover {
       background: #219653;
     }
+    
     .run-btn {
       background: #e74c3c;
     }
+    
     .run-btn:hover {
       background: #c0392b;
     }
+    
     pre {
       background: #2c3e50;
       color: #ecf0f1;
@@ -118,18 +144,24 @@
       position: relative;
       margin-top: 15px;
       border-left: 4px solid #3498db;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.4;
     }
+    
     .code-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
     }
+    
     .code-title {
       font-weight: bold;
       color: #2c3e50;
       font-size: 1.1rem;
     }
+    
     .toast {
       position: fixed;
       bottom: 20px;
@@ -143,15 +175,18 @@
       z-index: 1000;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
+    
     .toast.show {
       opacity: 1;
     }
+    
     .exercise-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
+    
     .exercise-card {
       background: #f8f9fa;
       border-radius: 8px;
@@ -159,21 +194,26 @@
       border-left: 4px solid #3498db;
       transition: transform 0.3s ease;
     }
+    
     .exercise-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
+    
     .exercise-card h4 {
       margin-top: 0;
       color: #2c3e50;
     }
+    
     .exercise-card p {
       font-size: 0.9rem;
       color: #7f8c8d;
     }
+    
     .category {
       margin-top: 30px;
     }
+    
     .category h3 {
       background: #3498db;
       color: white;
@@ -181,6 +221,7 @@
       border-radius: 5px;
       margin-bottom: 20px;
     }
+    
     footer {
       text-align: center;
       padding: 20px;
@@ -188,6 +229,7 @@
       color: white;
       margin-top: 30px;
     }
+    
     .nav-tabs {
       display: flex;
       background: #f8f9fa;
@@ -195,7 +237,9 @@
       margin: 0 20px;
       border-radius: 8px 8px 0 0;
       overflow: hidden;
+      flex-wrap: wrap;
     }
+    
     .nav-tab {
       padding: 15px 20px;
       background: #e9ecef;
@@ -205,17 +249,31 @@
       text-align: center;
       font-weight: bold;
       transition: all 0.3s ease;
+      min-width: 120px;
     }
+    
     .nav-tab.active {
       background: #3498db;
       color: white;
     }
+    
     .tab-content {
       display: none;
       padding: 20px;
     }
+    
     .tab-content.active {
       display: block;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-tab {
+        flex: 1 0 50%;
+      }
+      
+      iframe {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -242,6 +300,8 @@
       <button class="nav-tab" onclick="openTab('funciones')">Funciones</button>
       <button class="nav-tab" onclick="openTab('arreglos')">Arreglos</button>
       <button class="nav-tab" onclick="openTab('punteros')">Punteros</button>
+      <button class="nav-tab" onclick="openTab('estructuras')">Estructuras</button>
+      <button class="nav-tab" onclick="openTab('archivos')">Archivos</button>
       <button class="nav-tab" onclick="openTab('editor')">Editor</button>
     </div>
 
@@ -1013,3 +1073,412 @@ int main() {
     
     // Sumar las matrices
     for (i = 0; i < FILAS; i++) {
+        for (j = 0; j < COLUMNAS; j++) {
+            suma[i][j] = matriz1[i][j] + matriz2[i][j];
+        }
+    }
+    
+    printf("Matriz resultante de la suma:\\n");
+    for (i = 0; i < FILAS; i++) {
+        for (j = 0; j < COLUMNAS; j++) {
+            printf("%d ", suma[i][j]);
+        }
+        printf("\\n");
+    }
+    
+    return 0;
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- PUNTEROS -->
+    <div id="punteros" class="tab-content">
+      <div class="content-box">
+        <h2>Punteros en C</h2>
+        <p>Los punteros son variables que almacenan direcciones de memoria, permitiendo un manejo más eficiente de la memoria y el paso de parámetros por referencia.</p>
+        
+        <div class="category">
+          <h3>Ejercicios básicos con punteros</h3>
+          
+          <!-- Ejemplo 22: Uso básico de punteros -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 22: Uso básico de punteros</div>
+            <button class="copy-btn" onclick="copyCode('code22')">Copiar Código</button>
+          </div>
+          <pre id="code22">#include &lt;stdio.h&gt;
+
+int main() {
+    int num = 10;
+    int *ptr;
+    
+    ptr = &num;
+    
+    printf("Valor de num: %d\\n", num);
+    printf("Dirección de num: %p\\n", &num);
+    printf("Valor de ptr (dirección almacenada): %p\\n", ptr);
+    printf("Valor al que apunta ptr: %d\\n", *ptr);
+    
+    // Modificar el valor a través del puntero
+    *ptr = 20;
+    
+    printf("Después de modificar *ptr = 20:\\n");
+    printf("Valor de num: %d\\n", num);
+    printf("Valor al que apunta ptr: %d\\n", *ptr);
+    
+    return 0;
+}</pre>
+          
+          <!-- Ejemplo 23: Intercambio con punteros -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 23: Intercambio de valores usando punteros</div>
+            <button class="copy-btn" onclick="copyCode('code23')">Copiar Código</button>
+          </div>
+          <pre id="code23">#include &lt;stdio.h&gt;
+
+void intercambiar(int *a, int *b);
+
+int main() {
+    int x = 5, y = 10;
+    
+    printf("Antes del intercambio: x = %d, y = %d\\n", x, y);
+    
+    intercambiar(&x, &y);
+    
+    printf("Después del intercambio: x = %d, y = %d\\n", x, y);
+    
+    return 0;
+}
+
+void intercambiar(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}</pre>
+        </div>
+        
+        <div class="category">
+          <h3>Ejercicios con punteros y arreglos</h3>
+          
+          <!-- Ejemplo 24: Punteros y arreglos -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 24: Acceso a arreglos usando punteros</div>
+            <button class="copy-btn" onclick="copyCode('code24')">Copiar Código</button>
+          </div>
+          <pre id="code24">#include &lt;stdio.h&gt;
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int *ptr = arr;  // ptr apunta al primer elemento del arreglo
+    int i;
+    
+    printf("Acceso usando notación de arreglo:\\n");
+    for (i = 0; i < 5; i++) {
+        printf("arr[%d] = %d\\n", i, arr[i]);
+    }
+    
+    printf("\\nAcceso usando punteros:\\n");
+    for (i = 0; i < 5; i++) {
+        printf("*(ptr + %d) = %d\\n", i, *(ptr + i));
+    }
+    
+    printf("\\nDirecciones de memoria:\\n");
+    for (i = 0; i < 5; i++) {
+        printf("&arr[%d] = %p, ptr + %d = %p\\n", i, &arr[i], i, ptr + i);
+    }
+    
+    return 0;
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESTRUCTURAS -->
+    <div id="estructuras" class="tab-content">
+      <div class="content-box">
+        <h2>Estructuras en C</h2>
+        <p>Las estructuras permiten agrupar variables relacionadas bajo un mismo nombre, facilitando la organización de datos complejos.</p>
+        
+        <div class="category">
+          <h3>Ejercicios con estructuras básicas</h3>
+          
+          <!-- Ejemplo 25: Estructura de estudiante -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 25: Estructura para representar un estudiante</div>
+            <button class="copy-btn" onclick="copyCode('code25')">Copiar Código</button>
+          </div>
+          <pre id="code25">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct Estudiante {
+    char nombre[50];
+    int edad;
+    float promedio;
+};
+
+int main() {
+    struct Estudiante est1;
+    
+    printf("Ingresa el nombre del estudiante: ");
+    fgets(est1.nombre, 50, stdin);
+    // Eliminar el salto de línea al final
+    est1.nombre[strcspn(est1.nombre, "\\n")] = 0;
+    
+    printf("Ingresa la edad: ");
+    scanf("%d", &est1.edad);
+    
+    printf("Ingresa el promedio: ");
+    scanf("%f", &est1.promedio);
+    
+    printf("\\nDatos del estudiante:\\n");
+    printf("Nombre: %s\\n", est1.nombre);
+    printf("Edad: %d\\n", est1.edad);
+    printf("Promedio: %.2f\\n", est1.promedio);
+    
+    return 0;
+}</pre>
+          
+          <!-- Ejemplo 26: Arreglo de estructuras -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 26: Arreglo de estructuras</div>
+            <button class="copy-btn" onclick="copyCode('code26')">Copiar Código</button>
+          </div>
+          <pre id="code26">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct Libro {
+    char titulo[100];
+    char autor[50];
+    int anio;
+    float precio;
+};
+
+int main() {
+    struct Libro biblioteca[3];
+    int i;
+    
+    for (i = 0; i < 3; i++) {
+        printf("\\nIngresa los datos del libro %d:\\n", i + 1);
+        
+        printf("Título: ");
+        fgets(biblioteca[i].titulo, 100, stdin);
+        biblioteca[i].titulo[strcspn(biblioteca[i].titulo, "\\n")] = 0;
+        
+        printf("Autor: ");
+        fgets(biblioteca[i].autor, 50, stdin);
+        biblioteca[i].autor[strcspn(biblioteca[i].autor, "\\n")] = 0;
+        
+        printf("Año: ");
+        scanf("%d", &biblioteca[i].anio);
+        
+        printf("Precio: ");
+        scanf("%f", &biblioteca[i].precio);
+        
+        // Limpiar el buffer de entrada
+        while (getchar() != '\\n');
+    }
+    
+    printf("\\n--- CATÁLOGO DE LIBROS ---\\n");
+    for (i = 0; i < 3; i++) {
+        printf("\\nLibro %d:\\n", i + 1);
+        printf("Título: %s\\n", biblioteca[i].titulo);
+        printf("Autor: %s\\n", biblioteca[i].autor);
+        printf("Año: %d\\n", biblioteca[i].anio);
+        printf("Precio: $%.2f\\n", biblioteca[i].precio);
+    }
+    
+    return 0;
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHIVOS -->
+    <div id="archivos" class="tab-content">
+      <div class="content-box">
+        <h2>Manejo de Archivos en C</h2>
+        <p>El manejo de archivos permite leer y escribir datos en archivos externos, lo que es esencial para aplicaciones que necesitan persistencia de datos.</p>
+        
+        <div class="category">
+          <h3>Ejercicios con archivos de texto</h3>
+          
+          <!-- Ejemplo 27: Escritura en archivo -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 27: Escritura en un archivo de texto</div>
+            <button class="copy-btn" onclick="copyCode('code27')">Copiar Código</button>
+          </div>
+          <pre id="code27">#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *archivo;
+    char nombre[100];
+    int edad;
+    
+    // Abrir archivo para escritura
+    archivo = fopen("datos.txt", "w");
+    
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo.\\n");
+        return 1;
+    }
+    
+    printf("Ingresa tu nombre: ");
+    fgets(nombre, 100, stdin);
+    
+    printf("Ingresa tu edad: ");
+    scanf("%d", &edad);
+    
+    // Escribir en el archivo
+    fprintf(archivo, "Nombre: %s", nombre);
+    fprintf(archivo, "Edad: %d\\n", edad);
+    
+    // Cerrar el archivo
+    fclose(archivo);
+    
+    printf("Datos guardados en el archivo 'datos.txt'.\\n");
+    
+    return 0;
+}</pre>
+          
+          <!-- Ejemplo 28: Lectura de archivo -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 28: Lectura de un archivo de texto</div>
+            <button class="copy-btn" onclick="copyCode('code28')">Copiar Código</button>
+          </div>
+          <pre id="code28">#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *archivo;
+    char caracter;
+    
+    // Abrir archivo para lectura
+    archivo = fopen("datos.txt", "r");
+    
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo.\\n");
+        return 1;
+    }
+    
+    printf("Contenido del archivo 'datos.txt':\\n");
+    printf("----------------------------------\\n");
+    
+    // Leer y mostrar el contenido carácter por carácter
+    while ((caracter = fgetc(archivo)) != EOF) {
+        printf("%c", caracter);
+    }
+    
+    // Cerrar el archivo
+    fclose(archivo);
+    
+    return 0;
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDITOR DE CÓDIGO -->
+    <div id="editor" class="tab-content">
+      <div class="content-box">
+        <h2>Editor de Código en C</h2>
+        <p>Escribe y prueba tu propio código en C directamente en esta página.</p>
+        
+        <textarea id="code">
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("¡Hola desde C!\\n");
+    
+    // Escribe tu código aquí
+    int a = 5, b = 3;
+    printf("La suma de %d y %d es: %d\\n", a, b, a + b);
+    
+    return 0;
+}
+        </textarea>
+        <br>
+        <button class="run-btn" onclick="runCode()">Ejecutar Código</button>
+        <button class="copy-btn" onclick="copyCode('code')">Copiar Código</button>
+        
+        <h3>Salida del programa:</h3>
+        <pre id="output">La salida aparecerá aquí...</pre>
+      </div>
+    </div>
+
+    <footer>
+      <p>Curso Completo de Programación en C &copy; 2023 - Todos los derechos reservados</p>
+    </footer>
+  </div>
+
+  <!-- Toast para notificaciones -->
+  <div id="toast" class="toast">Código copiado al portapapeles</div>
+
+  <!-- Motor C en WebAssembly -->
+  <script src="https://unpkg.com/@webassemblyjs/wasm-parser"></script>
+  <script>
+    // Función para cambiar entre pestañas
+    function openTab(tabName) {
+      // Ocultar todos los contenidos de pestañas
+      const tabContents = document.getElementsByClassName('tab-content');
+      for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove('active');
+      }
+      
+      // Desactivar todos los botones de pestañas
+      const tabButtons = document.getElementsByClassName('nav-tab');
+      for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove('active');
+      }
+      
+      // Mostrar la pestaña seleccionada y activar su botón
+      document.getElementById(tabName).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+    
+    // Función para copiar código
+    function copyCode(elementId) {
+      const element = document.getElementById(elementId);
+      let textToCopy;
+      
+      if (element.tagName === 'TEXTAREA') {
+        textToCopy = element.value;
+      } else {
+        textToCopy = element.textContent;
+      }
+      
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast();
+      }).catch(err => {
+        console.error('Error al copiar: ', err);
+        // Fallback para navegadores antiguos
+        const textArea = document.createElement('textarea');
+        textArea.value = textToCopy;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast();
+      });
+    }
+    
+    // Función para mostrar notificación
+    function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+    
+    // Función para ejecutar código (simulada)
+    function runCode() {
+      const output = document.getElementById('output');
+      output.textContent = "Ejecutando código...\n";
+      
+      // Simulación de ejecución
+      setTimeout(() => {
+        output.textContent = "¡Hola desde C!\nLa suma de 5 y 3 es: 8\n";
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
