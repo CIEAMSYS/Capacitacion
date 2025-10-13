@@ -2,15 +2,46 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Página de Programación</title>
+  <title>Curso Completo de Programación en C</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
-    h1, h2 { color: #333; }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      padding: 20px; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    header {
+      background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-top: 10px;
+    }
     .video-container {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin: 20px;
+      justify-content: center;
     }
     iframe {
       width: 360px;
@@ -19,637 +50,966 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
+    .content-box {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-left: 5px solid #3498db;
+    }
+    .content-box h2 {
+      color: #2c3e50;
+      border-bottom: 2px solid #f1f1f1;
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    .content-box h3 {
+      color: #3498db;
+      margin-top: 25px;
+    }
     textarea {
       width: 100%;
       height: 200px;
-      font-family: monospace;
+      font-family: 'Courier New', monospace;
       font-size: 14px;
       border-radius: 8px;
-      padding: 10px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      resize: vertical;
+      box-sizing: border-box;
     }
     button {
       margin-top: 10px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border: none;
       border-radius: 6px;
-      background: #0077cc;
+      background: #3498db;
       color: white;
       font-size: 16px;
       cursor: pointer;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    button:hover { background: #005fa3; }
+    button:hover { 
+      background: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .copy-btn {
+      background: #27ae60;
+    }
+    .copy-btn:hover {
+      background: #219653;
+    }
+    .run-btn {
+      background: #e74c3c;
+    }
+    .run-btn:hover {
+      background: #c0392b;
+    }
     pre {
-      background: #111;
-      color: #0f0;
-      padding: 10px;
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 15px;
       border-radius: 8px;
       overflow-x: auto;
+      position: relative;
+      margin-top: 15px;
+      border-left: 4px solid #3498db;
     }
-    .content-box {
-      background: white;
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .code-title {
+      font-weight: bold;
+      color: #2c3e50;
+      font-size: 1.1rem;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #27ae60;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .toast.show {
+      opacity: 1;
+    }
+    .exercise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .exercise-card {
+      background: #f8f9fa;
+      border-radius: 8px;
       padding: 15px;
+      border-left: 4px solid #3498db;
+      transition: transform 0.3s ease;
+    }
+    .exercise-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .exercise-card h4 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+    .exercise-card p {
+      font-size: 0.9rem;
+      color: #7f8c8d;
+    }
+    .category {
+      margin-top: 30px;
+    }
+    .category h3 {
+      background: #3498db;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
       margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #2c3e50;
+      color: white;
+      margin-top: 30px;
+    }
+    .nav-tabs {
+      display: flex;
+      background: #f8f9fa;
+      padding: 0;
+      margin: 0 20px;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+    }
+    .nav-tab {
+      padding: 15px 20px;
+      background: #e9ecef;
+      border: none;
+      cursor: pointer;
+      flex: 1;
+      text-align: center;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .nav-tab.active {
+      background: #3498db;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+      padding: 20px;
+    }
+    .tab-content.active {
+      display: block;
     }
   </style>
 </head>
 <body>
-  <h1>Sección de Programación</h1>
+  <div class="container">
+    <header>
+      <h1>Curso Completo de Programación en C</h1>
+      <p class="subtitle">Aprende C desde cero con ejemplos prácticos y ejercicios</p>
+    </header>
 
-  <!-- VIDEOS DE YOUTUBE -->
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/ZzaPdXTrSb8" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/3lQEunpmtRA" allowfullscreen></iframe>
-  </div>
+    <!-- VIDEOS DE YOUTUBE -->
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/ZzaPdXTrSb8" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/3lQEunpmtRA" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/KJgsSFOSQv0" allowfullscreen></iframe>
+    </div>
 
-  <!-- TEXTO REDACTADO -->
-  <div class="content-box">
-    <h2>Introducción</h2>
-    <p>
-      Bienvenido a la sección de programación. Aquí podrás ver algunos videos de introducción,
-      leer explicaciones y además probar tus propios programas en C directamente desde esta página.
-    </p>
-  </div>
+    <!-- NAVEGACIÓN POR PESTAÑAS -->
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="openTab('intro')">Introducción</button>
+      <button class="nav-tab" onclick="openTab('basicos')">Conceptos Básicos</button>
+      <button class="nav-tab" onclick="openTab('condicionales')">Condicionales</button>
+      <button class="nav-tab" onclick="openTab('bucles')">Bucles</button>
+      <button class="nav-tab" onclick="openTab('funciones')">Funciones</button>
+      <button class="nav-tab" onclick="openTab('arreglos')">Arreglos</button>
+      <button class="nav-tab" onclick="openTab('punteros')">Punteros</button>
+      <button class="nav-tab" onclick="openTab('editor')">Editor</button>
+    </div>
 
-  <!-- CAJÓN DE CÓDIGO -->
-  <div class="content-box">
-    <h2>Prueba tu código en C</h2>
-    <textarea id="code">
-#include <stdio.h>
+    <!-- TEXTO REDACTADO -->
+    <div id="intro" class="tab-content active">
+      <div class="content-box">
+        <h2>Introducción a la Programación en C</h2>
+        <p>
+          Bienvenido al curso completo de programación en C. C es un lenguaje de programación de propósito general 
+          que ha influido en muchos otros lenguajes modernos. Es conocido por su eficiencia y control sobre los 
+          recursos del sistema.
+        </p>
+        <p>
+          En este curso aprenderás desde los conceptos más básicos hasta temas avanzados, con ejemplos prácticos 
+          que podrás probar directamente en esta página.
+        </p>
+        
+        <h3>¿Por qué aprender C?</h3>
+        <div class="exercise-grid">
+          <div class="exercise-card">
+            <h4>Eficiencia</h4>
+            <p>C permite un control detallado sobre los recursos del sistema, lo que resulta en programas muy eficientes.</p>
+          </div>
+          <div class="exercise-card">
+            <h4>Portabilidad</h4>
+            <p>El código C puede compilarse en casi cualquier plataforma sin cambios significativos.</p>
+          </div>
+          <div class="exercise-card">
+            <h4>Base para otros lenguajes</h4>
+            <p>Muchos lenguajes modernos como C++, Java y C# están influenciados por C.</p>
+          </div>
+          <div class="exercise-card">
+            <h4>Ampliamente utilizado</h4>
+            <p>C se usa en sistemas operativos, compiladores, bases de datos y aplicaciones de tiempo real.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONCEPTOS BÁSICOS -->
+    <div id="basicos" class="tab-content">
+      <div class="content-box">
+        <h2>Conceptos Básicos de C</h2>
+        <p>Estos son los fundamentos de la programación en C. Comprender estos conceptos es esencial para avanzar.</p>
+        
+        <div class="category">
+          <h3>Ejercicios de Entrada/Salida Básica</h3>
+          
+          <!-- Ejemplo 1: Hola Mundo -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 1: Hola Mundo</div>
+            <button class="copy-btn" onclick="copyCode('code1')">Copiar Código</button>
+          </div>
+          <pre id="code1">#include &lt;stdio.h&gt;
+
 int main() {
-    printf("Hola desde C en GitHub Pages!\n");
-    return 0;
-}
-    </textarea>
-    <br>
-    <button onclick="runCode()">Ejecutar</button>
-    <h3>Salida del programa:</h3>
-    <pre id="output"></pre>
-  </div>
-
-  <!-- TODOS LOS CÓDIGOS DE LOS CAPÍTULOS -->
-  <div class="content-box">
-    <h2>Capítulo 1: Introducción a C - Códigos</h2>
-    
-    <h3>Ejemplo 1.1: Hola Mundo</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    printf("¡Hola, mundo!\n");
-    return 0;
-}</pre>
-
-    <h3>Ejemplo 1.2: Suma básica</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    int a = 5;
-    int b = 3;
-    int suma = a + b;
-    
-    printf("La suma de %d + %d = %d\n", a, b, suma);
-    return 0;
-}</pre>
-
-    <h3>Ejemplo 1.3: Entrada de usuario</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    int numero;
-    printf("Ingresa un número: ");
-    scanf("%d", &numero);
-    printf("Ingresaste: %d\n", numero);
-    return 0;
-}</pre>
-  </div>
-
-  <div class="content-box">
-    <h2>Capítulo 2: Variables y Tipos de Datos - Códigos</h2>
-    
-    <h3>Ejemplo 2.1: Tipos de datos básicos</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    int entero = 10;
-    float decimal = 3.14;
-    double doble = 3.141592;
-    char caracter = 'A';
-    char cadena[] = "Hola C";
-    
-    printf("Entero: %d\n", entero);
-    printf("Float: %.2f\n", decimal);
-    printf("Double: %.6f\n", doble);
-    printf("Caracter: %c\n", caracter);
-    printf("Cadena: %s\n", cadena);
-    
+    printf("¡Hola, mundo!\\n");
     return 0;
 }</pre>
+          
+          <!-- Ejemplo 2: Suma de dos números -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 2: Suma de dos números</div>
+            <button class="copy-btn" onclick="copyCode('code2')">Copiar Código</button>
+          </div>
+          <pre id="code2">#include &lt;stdio.h&gt;
 
-    <h3>Ejemplo 2.2: Constantes y operaciones</h3>
-    <pre>#include &lt;stdio.h&gt;
+int main() {
+    int num1, num2, suma;
+    
+    printf("Ingresa el primer número: ");
+    scanf("%d", &num1);
+    
+    printf("Ingresa el segundo número: ");
+    scanf("%d", &num2);
+    
+    suma = num1 + num2;
+    
+    printf("La suma de %d y %d es: %d\\n", num1, num2, suma);
+    
+    return 0;
+}</pre>
+          
+          <!-- Ejemplo 3: Operaciones matemáticas -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 3: Operaciones matemáticas básicas</div>
+            <button class="copy-btn" onclick="copyCode('code3')">Copiar Código</button>
+          </div>
+          <pre id="code3">#include &lt;stdio.h&gt;
+
+int main() {
+    float a, b;
+    
+    printf("Ingresa dos números: ");
+    scanf("%f %f", &a, &b);
+    
+    printf("Suma: %.2f\\n", a + b);
+    printf("Resta: %.2f\\n", a - b);
+    printf("Multiplicación: %.2f\\n", a * b);
+    
+    if (b != 0) {
+        printf("División: %.2f\\n", a / b);
+    } else {
+        printf("No se puede dividir por cero\\n");
+    }
+    
+    return 0;
+}</pre>
+        </div>
+        
+        <div class="category">
+          <h3>Ejercicios con Variables y Tipos de Datos</h3>
+          
+          <!-- Ejemplo 4: Intercambio de variables -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 4: Intercambio de valores</div>
+            <button class="copy-btn" onclick="copyCode('code4')">Copiar Código</button>
+          </div>
+          <pre id="code4">#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, temp;
+    
+    printf("Ingresa el valor de a: ");
+    scanf("%d", &a);
+    
+    printf("Ingresa el valor de b: ");
+    scanf("%d", &b);
+    
+    printf("Antes del intercambio: a = %d, b = %d\\n", a, b);
+    
+    // Intercambiar valores
+    temp = a;
+    a = b;
+    b = temp;
+    
+    printf("Después del intercambio: a = %d, b = %d\\n", a, b);
+    
+    return 0;
+}</pre>
+          
+          <!-- Ejemplo 5: Calcular área de un círculo -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 5: Calcular área de un círculo</div>
+            <button class="copy-btn" onclick="copyCode('code5')">Copiar Código</button>
+          </div>
+          <pre id="code5">#include &lt;stdio.h&gt;
 #define PI 3.14159
 
 int main() {
-    const int DIAS_SEMANA = 7;
-    float radio = 5.0;
-    float area = PI * radio * radio;
+    float radio, area;
     
-    printf("Días en una semana: %d\n", DIAS_SEMANA);
-    printf("Área del círculo (radio=%.1f): %.2f\n", radio, area);
+    printf("Ingresa el radio del círculo: ");
+    scanf("%f", &radio);
     
-    return 0;
-}</pre>
-
-    <h3>Ejemplo 2.3: Operadores</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    int a = 15, b = 4;
+    area = PI * radio * radio;
     
-    printf("a = %d, b = %d\n", a, b);
-    printf("Suma: %d\n", a + b);
-    printf("Resta: %d\n", a - b);
-    printf("Multiplicación: %d\n", a * b);
-    printf("División: %d\n", a / b);
-    printf("Módulo: %d\n", a % b);
+    printf("El área del círculo con radio %.2f es: %.2f\\n", radio, area);
     
     return 0;
 }</pre>
-  </div>
+        </div>
+      </div>
+    </div>
 
-  <div class="content-box">
-    <h2>Capítulo 3: Estructuras de Control - Códigos</h2>
-    
-    <h3>Ejemplo 3.1: Condicional if-else</h3>
-    <pre>#include &lt;stdio.h&gt;
+    <!-- CONDICIONALES -->
+    <div id="condicionales" class="tab-content">
+      <div class="content-box">
+        <h2>Estructuras Condicionales</h2>
+        <p>Las estructuras condicionales permiten que tu programa tome decisiones basadas en condiciones.</p>
+        
+        <div class="category">
+          <h3>Ejercicios con if-else</h3>
+          
+          <!-- Ejemplo 6: Número par o impar -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 6: Verificar si un número es par o impar</div>
+            <button class="copy-btn" onclick="copyCode('code6')">Copiar Código</button>
+          </div>
+          <pre id="code6">#include &lt;stdio.h&gt;
 
 int main() {
-    int edad = 18;
+    int numero;
     
-    if(edad >= 18) {
-        printf("Eres mayor de edad\n");
+    printf("Ingresa un número: ");
+    scanf("%d", &numero);
+    
+    if (numero % 2 == 0) {
+        printf("%d es un número par.\\n", numero);
     } else {
-        printf("Eres menor de edad\n");
+        printf("%d es un número impar.\\n", numero);
     }
-    
-    // Operador ternario
-    char* mensaje = (edad >= 18) ? "Mayor" : "Menor";
-    printf("Estado: %s\n", mensaje);
     
     return 0;
 }</pre>
-
-    <h3>Ejemplo 3.2: Bucle for y while</h3>
-    <pre>#include &lt;stdio.h&gt;
+          
+          <!-- Ejemplo 7: Mayor de tres números -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 7: Encontrar el mayor de tres números</div>
+            <button class="copy-btn" onclick="copyCode('code7')">Copiar Código</button>
+          </div>
+          <pre id="code7">#include &lt;stdio.h&gt;
 
 int main() {
-    int i;
+    int a, b, c, mayor;
     
-    printf("Bucle for:\n");
-    for(i = 1; i <= 5; i++) {
-        printf("Número: %d\n", i);
+    printf("Ingresa tres números: ");
+    scanf("%d %d %d", &a, &b, &c);
+    
+    if (a >= b && a >= c) {
+        mayor = a;
+    } else if (b >= a && b >= c) {
+        mayor = b;
+    } else {
+        mayor = c;
     }
     
-    printf("\nBucle while:\n");
-    int contador = 5;
-    while(contador > 0) {
-        printf("Contador: %d\n", contador);
-        contador--;
-    }
-    
-    printf("\nBucle do-while:\n");
-    int numero = 3;
-    do {
-        printf("Número: %d\n", numero);
-        numero--;
-    } while(numero > 0);
+    printf("El mayor de %d, %d y %d es: %d\\n", a, b, c, mayor);
     
     return 0;
 }</pre>
-
-    <h3>Ejemplo 3.3: Switch case</h3>
-    <pre>#include &lt;stdio.h&gt;
+          
+          <!-- Ejemplo 8: Calculadora simple -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 8: Calculadora simple</div>
+            <button class="copy-btn" onclick="copyCode('code8')">Copiar Código</button>
+          </div>
+          <pre id="code8">#include &lt;stdio.h&gt;
 
 int main() {
-    int opcion = 2;
+    char operador;
+    float num1, num2, resultado;
     
-    switch(opcion) {
-        case 1:
-            printf("Opción 1 seleccionada\n");
+    printf("Ingresa una operación (+, -, *, /): ");
+    scanf(" %c", &operador);
+    
+    printf("Ingresa dos números: ");
+    scanf("%f %f", &num1, &num2);
+    
+    switch(operador) {
+        case '+':
+            resultado = num1 + num2;
             break;
-        case 2:
-            printf("Opción 2 seleccionada\n");
+        case '-':
+            resultado = num1 - num2;
             break;
-        case 3:
-            printf("Opción 3 seleccionada\n");
+        case '*':
+            resultado = num1 * num2;
+            break;
+        case '/':
+            if (num2 != 0) {
+                resultado = num1 / num2;
+            } else {
+                printf("Error: No se puede dividir por cero\\n");
+                return 1;
+            }
             break;
         default:
-            printf("Opción no válida\n");
+            printf("Operador no válido\\n");
+            return 1;
     }
     
-    return 0;
-}</pre>
-
-    <h3>Ejemplo 3.4: Break y continue</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    int i;
-    
-    printf("Uso de break:\n");
-    for(i = 1; i <= 10; i++) {
-        if(i == 5) break;
-        printf("%d ", i);
-    }
-    
-    printf("\n\nUso de continue:\n");
-    for(i = 1; i <= 10; i++) {
-        if(i % 2 == 0) continue;
-        printf("%d ", i);
-    }
-    printf("\n");
+    printf("Resultado: %.2f %c %.2f = %.2f\\n", num1, operador, num2, resultado);
     
     return 0;
 }</pre>
-  </div>
-
-  <div class="content-box">
-    <h2>Capítulo 4: Funciones - Códigos</h2>
-    
-    <h3>Ejemplo 4.1: Función básica</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-// Declaración de función
-int sumar(int a, int b);
-
-int main() {
-    int resultado = sumar(8, 12);
-    printf("La suma es: %d\n", resultado);
-    return 0;
-}
-
-// Definición de función
-int sumar(int a, int b) {
-    return a + b;
-}</pre>
-
-    <h3>Ejemplo 4.2: Función recursiva (factorial)</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-long factorial(int n);
+        </div>
+        
+        <div class="category">
+          <h3>Ejercicios con switch</h3>
+          
+          <!-- Ejemplo 9: Días de la semana -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 9: Días de la semana</div>
+            <button class="copy-btn" onclick="copyCode('code9')">Copiar Código</button>
+          </div>
+          <pre id="code9">#include &lt;stdio.h&gt;
 
 int main() {
-    int numero = 5;
-    long fact = factorial(numero);
-    printf("El factorial de %d es %ld\n", numero, fact);
-    return 0;
-}
-
-long factorial(int n) {
-    if(n <= 1) return 1;
-    return n * factorial(n - 1);
-}</pre>
-
-    <h3>Ejemplo 4.3: Función con múltiples parámetros</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-void imprimirInfo(char nombre[], int edad, float altura);
-
-int main() {
-    imprimirInfo("Ana", 25, 1.68);
-    imprimirInfo("Carlos", 30, 1.75);
-    return 0;
-}
-
-void imprimirInfo(char nombre[], int edad, float altura) {
-    printf("Nombre: %s, Edad: %d, Altura: %.2f\n", nombre, edad, altura);
-}</pre>
-
-    <h3>Ejemplo 4.4: Función con retorno</h3>
-    <pre>#include &lt;stdio.h&gt;
-#include &lt;math.h&gt;
-
-double calcularHipotenusa(double a, double b) {
-    return sqrt(a * a + b * b);
-}
-
-int main() {
-    double cateto1 = 3.0, cateto2 = 4.0;
-    double hipotenusa = calcularHipotenusa(cateto1, cateto2);
-    printf("Hipotenusa: %.2f\n", hipotenusa);
-    return 0;
-}</pre>
-  </div>
-
-  <div class="content-box">
-    <h2>Capítulo 5: Arreglos y Cadenas - Códigos</h2>
+    int dia;
     
-    <h3>Ejemplo 5.1: Arreglo de enteros</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    int numeros[5] = {10, 20, 30, 40, 50};
-    int i;
+    printf("Ingresa un número del 1 al 7: ");
+    scanf("%d", &dia);
     
-    printf("Elementos del arreglo:\n");
-    for(i = 0; i < 5; i++) {
-        printf("numeros[%d] = %d\n", i, numeros[i]);
-    }
-    
-    printf("\nSuma de elementos: ");
-    int suma = 0;
-    for(i = 0; i < 5; i++) {
-        suma += numeros[i];
-    }
-    printf("%d\n", suma);
-    
-    return 0;
-}</pre>
-
-    <h3>Ejemplo 5.2: Manejo de cadenas</h3>
-    <pre>#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-
-int main() {
-    char saludo[20] = "Hola";
-    char nombre[] = "Mundo";
-    char mensaje[50];
-    
-    // Concatenar cadenas
-    strcpy(mensaje, saludo);
-    strcat(mensaje, " ");
-    strcat(mensaje, nombre);
-    strcat(mensaje, "!");
-    
-    printf("Cadena resultante: %s\n", mensaje);
-    printf("Longitud: %zu\n", strlen(mensaje));
-    
-    // Comparar cadenas
-    if(strcmp(saludo, "Hola") == 0) {
-        printf("El saludo es 'Hola'\n");
-    }
-    
-    return 0;
-}</pre>
-
-    <h3>Ejemplo 5.3: Arreglo bidimensional (matriz)</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    int matriz[3][3] = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
-    };
-    
-    int i, j;
-    printf("Matriz 3x3:\n");
-    for(i = 0; i < 3; i++) {
-        for(j = 0; j < 3; j++) {
-            printf("%d ", matriz[i][j]);
-        }
-        printf("\n");
-    }
-    
-    return 0;
-}</pre>
-
-    <h3>Ejemplo 5.4: Búsqueda en arreglo</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    int numeros[] = {10, 23, 45, 67, 89, 12, 34};
-    int tamaño = 7;
-    int buscar = 45;
-    int encontrado = 0;
-    
-    for(int i = 0; i < tamaño; i++) {
-        if(numeros[i] == buscar) {
-            printf("Número %d encontrado en posición %d\n", buscar, i);
-            encontrado = 1;
+    switch(dia) {
+        case 1:
+            printf("Lunes\\n");
             break;
+        case 2:
+            printf("Martes\\n");
+            break;
+        case 3:
+            printf("Miércoles\\n");
+            break;
+        case 4:
+            printf("Jueves\\n");
+            break;
+        case 5:
+            printf("Viernes\\n");
+            break;
+        case 6:
+            printf("Sábado\\n");
+            break;
+        case 7:
+            printf("Domingo\\n");
+            break;
+        default:
+            printf("Número no válido\\n");
+    }
+    
+    return 0;
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUCLES -->
+    <div id="bucles" class="tab-content">
+      <div class="content-box">
+        <h2>Estructuras Repetitivas (Bucles)</h2>
+        <p>Los bucles permiten ejecutar un bloque de código múltiples veces, lo que es esencial para tareas repetitivas.</p>
+        
+        <div class="category">
+          <h3>Ejercicios con for</h3>
+          
+          <!-- Ejemplo 10: Tabla de multiplicar -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 10: Tabla de multiplicar</div>
+            <button class="copy-btn" onclick="copyCode('code10')">Copiar Código</button>
+          </div>
+          <pre id="code10">#include &lt;stdio.h&gt;
+
+int main() {
+    int numero, i;
+    
+    printf("Ingresa un número para generar su tabla de multiplicar: ");
+    scanf("%d", &numero);
+    
+    printf("Tabla de multiplicar del %d:\\n", numero);
+    for (i = 1; i <= 10; i++) {
+        printf("%d x %d = %d\\n", numero, i, numero * i);
+    }
+    
+    return 0;
+}</pre>
+          
+          <!-- Ejemplo 11: Factorial de un número -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 11: Factorial de un número</div>
+            <button class="copy-btn" onclick="copyCode('code11')">Copiar Código</button>
+          </div>
+          <pre id="code11">#include &lt;stdio.h&gt;
+
+int main() {
+    int n, i;
+    unsigned long long factorial = 1;
+    
+    printf("Ingresa un número entero positivo: ");
+    scanf("%d", &n);
+    
+    if (n < 0) {
+        printf("Error: El factorial no está definido para números negativos.\\n");
+    } else {
+        for (i = 1; i <= n; i++) {
+            factorial *= i;
+        }
+        printf("El factorial de %d es: %llu\\n", n, factorial);
+    }
+    
+    return 0;
+}</pre>
+          
+          <!-- Ejemplo 12: Números primos -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 12: Verificar si un número es primo</div>
+            <button class="copy-btn" onclick="copyCode('code12')">Copiar Código</button>
+          </div>
+          <pre id="code12">#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+int main() {
+    int n, i;
+    bool esPrimo = true;
+    
+    printf("Ingresa un número entero positivo: ");
+    scanf("%d", &n);
+    
+    if (n <= 1) {
+        esPrimo = false;
+    } else {
+        for (i = 2; i <= n / 2; i++) {
+            if (n % i == 0) {
+                esPrimo = false;
+                break;
+            }
         }
     }
     
-    if(!encontrado) {
-        printf("Número %d no encontrado\n", buscar);
+    if (esPrimo) {
+        printf("%d es un número primo.\\n", n);
+    } else {
+        printf("%d no es un número primo.\\n", n);
     }
     
     return 0;
 }</pre>
-  </div>
-
-  <div class="content-box">
-    <h2>Capítulo 6: Punteros - Códigos</h2>
-    
-    <h3>Ejemplo 6.1: Punteros básicos</h3>
-    <pre>#include &lt;stdio.h&gt;
+        </div>
+        
+        <div class="category">
+          <h3>Ejercicios con while y do-while</h3>
+          
+          <!-- Ejemplo 13: Suma de dígitos -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 13: Suma de dígitos de un número</div>
+            <button class="copy-btn" onclick="copyCode('code13')">Copiar Código</button>
+          </div>
+          <pre id="code13">#include &lt;stdio.h&gt;
 
 int main() {
-    int numero = 42;
-    int *p = &numero;
+    int numero, suma = 0, digito;
     
-    printf("Valor de numero: %d\n", numero);
-    printf("Dirección de numero: %p\n", &numero);
-    printf("Valor del puntero p: %p\n", p);
-    printf("Valor al que apunta p: %d\n", *p);
+    printf("Ingresa un número: ");
+    scanf("%d", &numero);
     
-    // Modificar valor a través del puntero
-    *p = 100;
-    printf("Nuevo valor de numero: %d\n", numero);
+    // Manejar números negativos
+    if (numero < 0) {
+        numero = -numero;
+    }
+    
+    while (numero > 0) {
+        digito = numero % 10;
+        suma += digito;
+        numero /= 10;
+    }
+    
+    printf("La suma de los dígitos es: %d\\n", suma);
     
     return 0;
 }</pre>
-
-    <h3>Ejemplo 6.2: Punteros y arreglos</h3>
-    <pre>#include &lt;stdio.h&gt;
+          
+          <!-- Ejemplo 14: Fibonacci -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 14: Serie de Fibonacci</div>
+            <button class="copy-btn" onclick="copyCode('code14')">Copiar Código</button>
+          </div>
+          <pre id="code14">#include &lt;stdio.h&gt;
 
 int main() {
-    int arr[5] = {1, 2, 3, 4, 5};
-    int *ptr = arr;  // ptr apunta al primer elemento
+    int n, i;
+    long long primero = 0, segundo = 1, siguiente;
     
-    printf("Acceso mediante puntero:\n");
-    for(int i = 0; i < 5; i++) {
-        printf("arr[%d] = %d, *(ptr + %d) = %d\n", i, arr[i], i, *(ptr + i));
-    }
+    printf("Ingresa el número de términos de Fibonacci: ");
+    scanf("%d", &n);
     
-    printf("\nUsando aritmética de punteros:\n");
-    for(ptr = arr; ptr < arr + 5; ptr++) {
-        printf("%d ", *ptr);
+    printf("Serie de Fibonacci:\\n");
+    
+    for (i = 1; i <= n; i++) {
+        if (i == 1) {
+            printf("%lld", primero);
+        } else if (i == 2) {
+            printf(", %lld", segundo);
+        } else {
+            siguiente = primero + segundo;
+            printf(", %lld", siguiente);
+            primero = segundo;
+            segundo = siguiente;
+        }
     }
-    printf("\n");
+    printf("\\n");
     
     return 0;
 }</pre>
+        </div>
+      </div>
+    </div>
 
-    <h3>Ejemplo 6.3: Punteros a funciones</h3>
-    <pre>#include &lt;stdio.h&gt;
+    <!-- FUNCIONES -->
+    <div id="funciones" class="tab-content">
+      <div class="content-box">
+        <h2>Funciones en C</h2>
+        <p>Las funciones permiten dividir el código en partes más pequeñas y reutilizables, mejorando la organización y legibilidad.</p>
+        
+        <div class="category">
+          <h3>Ejercicios con funciones básicas</h3>
+          
+          <!-- Ejemplo 15: Función para calcular potencia -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 15: Función para calcular potencia</div>
+            <button class="copy-btn" onclick="copyCode('code15')">Copiar Código</button>
+          </div>
+          <pre id="code15">#include &lt;stdio.h&gt;
 
-int sumar(int a, int b) {
-    return a + b;
+// Declaración de la función
+double potencia(double base, int exponente);
+
+int main() {
+    double base, resultado;
+    int exponente;
+    
+    printf("Ingresa la base: ");
+    scanf("%lf", &base);
+    
+    printf("Ingresa el exponente: ");
+    scanf("%d", &exponente);
+    
+    resultado = potencia(base, exponente);
+    
+    printf("%.2f elevado a %d es: %.2f\\n", base, exponente, resultado);
+    
+    return 0;
 }
 
-int multiplicar(int a, int b) {
-    return a * b;
+// Definición de la función
+double potencia(double base, int exponente) {
+    double resultado = 1.0;
+    int i;
+    
+    for (i = 0; i < exponente; i++) {
+        resultado *= base;
+    }
+    
+    return resultado;
+}</pre>
+          
+          <!-- Ejemplo 16: Función para verificar primo -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 16: Función para verificar número primo</div>
+            <button class="copy-btn" onclick="copyCode('code16')">Copiar Código</button>
+          </div>
+          <pre id="code16">#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+// Declaración de la función
+bool esPrimo(int n);
+
+int main() {
+    int numero;
+    
+    printf("Ingresa un número: ");
+    scanf("%d", &numero);
+    
+    if (esPrimo(numero)) {
+        printf("%d es un número primo.\\n", numero);
+    } else {
+        printf("%d no es un número primo.\\n", numero);
+    }
+    
+    return 0;
 }
 
-int main() {
-    int (*operacion)(int, int);  // Puntero a función
+// Definición de la función
+bool esPrimo(int n) {
+    int i;
     
-    operacion = sumar;
-    printf("Suma: %d\n", operacion(5, 3));
+    if (n <= 1) {
+        return false;
+    }
     
-    operacion = multiplicar;
-    printf("Multiplicación: %d\n", operacion(5, 3));
+    for (i = 2; i <= n / 2; i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
     
-    return 0;
+    return true;
 }</pre>
+        </div>
+        
+        <div class="category">
+          <h3>Ejercicios con funciones recursivas</h3>
+          
+          <!-- Ejemplo 17: Factorial recursivo -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 17: Factorial usando recursión</div>
+            <button class="copy-btn" onclick="copyCode('code17')">Copiar Código</button>
+          </div>
+          <pre id="code17">#include &lt;stdio.h&gt;
 
-    <h3>Ejemplo 6.4: Puntero a puntero</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-int main() {
-    int valor = 100;
-    int *ptr = &valor;
-    int **pptr = &ptr;
-    
-    printf("Valor: %d\n", valor);
-    printf("*ptr: %d\n", *ptr);
-    printf("**pptr: %d\n", **pptr);
-    
-    printf("\nDirecciones:\n");
-    printf("&valor: %p\n", &valor);
-    printf("ptr: %p\n", ptr);
-    printf("&ptr: %p\n", &ptr);
-    printf("pptr: %p\n", pptr);
-    
-    return 0;
-}</pre>
-  </div>
-
-  <div class="content-box">
-    <h2>Capítulo 7: Estructuras y Uniones - Códigos</h2>
-    
-    <h3>Ejemplo 7.1: Estructura básica</h3>
-    <pre>#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-
-// Definición de estructura
-struct Estudiante {
-    char nombre[50];
-    int edad;
-    float promedio;
-};
+// Declaración de la función recursiva
+long long factorial(int n);
 
 int main() {
-    // Declaración e inicialización
-    struct Estudiante estudiante1;
-    strcpy(estudiante1.nombre, "María López");
-    estudiante1.edad = 20;
-    estudiante1.promedio = 8.5;
+    int numero;
     
-    printf("Estudiante:\n");
-    printf("Nombre: %s\n", estudiante1.nombre);
-    printf("Edad: %d\n", estudiante1.edad);
-    printf("Promedio: %.1f\n", estudiante1.promedio);
+    printf("Ingresa un número para calcular su factorial: ");
+    scanf("%d", &numero);
     
-    return 0;
-}</pre>
-
-    <h3>Ejemplo 7.2: Arreglo de estructuras</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-struct Punto {
-    int x;
-    int y;
-};
-
-int main() {
-    struct Punto puntos[3] = {
-        {1, 2},
-        {3, 4},
-        {5, 6}
-    };
-    
-    printf("Coordenadas de puntos:\n");
-    for(int i = 0; i < 3; i++) {
-        printf("Punto %d: (%d, %d)\n", i+1, puntos[i].x, puntos[i].y);
+    if (numero < 0) {
+        printf("Error: El factorial no está definido para números negativos.\\n");
+    } else {
+        printf("El factorial de %d es: %lld\\n", numero, factorial(numero));
     }
     
     return 0;
-}</pre>
+}
 
-    <h3>Ejemplo 7.3: Uniones</h3>
-    <pre>#include &lt;stdio.h&gt;
-
-union Dato {
-    int entero;
-    float decimal;
-    char caracter;
-};
-
-int main() {
-    union Dato dato;
-    
-    dato.entero = 10;
-    printf("Valor entero: %d\n", dato.entero);
-    
-    dato.decimal = 3.14;
-    printf("Valor decimal: %.2f\n", dato.decimal);
-    
-    dato.caracter = 'A';
-    printf("Valor caracter: %c\n", dato.caracter);
-    
-    // Solo el último valor asignado es válido
-    printf("Entero después de cambiar: %d (valor incorrecto)\n", dato.entero);
-    
-    return 0;
-}</pre>
-
-    <h3>Ejemplo 7.4: Estructuras con punteros</h3>
-    <pre>#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;string.h&gt;
-
-struct Libro {
-    char titulo[100];
-    char autor[50];
-    int año;
-};
-
-int main() {
-    struct Libro *libroPtr = malloc(sizeof(struct Libro));
-    
-    strcpy(libroPtr->titulo, "C Programming");
-    strcpy(libroPtr->autor, "Dennis Ritchie");
-    libroPtr->año = 1978;
-    
-    printf("Libro:\n");
-    printf("Título: %s\n", libroPtr->titulo);
-    printf("Autor: %s\n", libroPtr->autor);
-    printf("Año: %d\n", libroPtr->año);
-    
-    free(libroPtr);
-    return 0;
-}</pre>
-  </div>
-
-  <!-- Motor C en WebAssembly -->
-  <script src="https://bellard.org/quickjs/qjs-modules/c.js"></script>
-  <script>
-    async function runCode() {
-      const code = document.getElementById("code").value;
-      const output = document.getElementById("output");
-      output.textContent = "Compilando...\n";
-
-      try {
-        const result = await CRunner.run(code);
-        output.textContent = result.output;
-      } catch (err) {
-        output.textContent = "Error: " + err.message;
-      }
+// Definición de la función recursiva
+long long factorial(int n) {
+    if (n == 0 || n == 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
     }
-  </script>
-</body>
-</html>
+}</pre>
+          
+          <!-- Ejemplo 18: Fibonacci recursivo -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 18: Fibonacci usando recursión</div>
+            <button class="copy-btn" onclick="copyCode('code18')">Copiar Código</button>
+          </div>
+          <pre id="code18">#include &lt;stdio.h&gt;
+
+// Declaración de la función recursiva
+long long fibonacci(int n);
+
+int main() {
+    int n, i;
+    
+    printf("Ingresa el número de términos de Fibonacci: ");
+    scanf("%d", &n);
+    
+    printf("Serie de Fibonacci:\\n");
+    for (i = 0; i < n; i++) {
+        printf("%lld", fibonacci(i));
+        if (i < n - 1) {
+            printf(", ");
+        }
+    }
+    printf("\\n");
+    
+    return 0;
+}
+
+// Definición de la función recursiva
+long long fibonacci(int n) {
+    if (n <= 1) {
+        return n;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARREGLOS -->
+    <div id="arreglos" class="tab-content">
+      <div class="content-box">
+        <h2>Arreglos en C</h2>
+        <p>Los arreglos permiten almacenar múltiples valores del mismo tipo en una sola variable, facilitando el manejo de colecciones de datos.</p>
+        
+        <div class="category">
+          <h3>Ejercicios con arreglos unidimensionales</h3>
+          
+          <!-- Ejemplo 19: Promedio de calificaciones -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 19: Promedio de calificaciones</div>
+            <button class="copy-btn" onclick="copyCode('code19')">Copiar Código</button>
+          </div>
+          <pre id="code19">#include &lt;stdio.h&gt;
+
+#define MAX 100
+
+int main() {
+    int calificaciones[MAX];
+    int n, i;
+    float suma = 0, promedio;
+    
+    printf("Ingresa el número de calificaciones: ");
+    scanf("%d", &n);
+    
+    if (n > MAX || n <= 0) {
+        printf("Número de calificaciones no válido.\\n");
+        return 1;
+    }
+    
+    printf("Ingresa las calificaciones:\\n");
+    for (i = 0; i < n; i++) {
+        printf("Calificación %d: ", i + 1);
+        scanf("%d", &calificaciones[i]);
+        suma += calificaciones[i];
+    }
+    
+    promedio = suma / n;
+    
+    printf("El promedio de las calificaciones es: %.2f\\n", promedio);
+    
+    return 0;
+}</pre>
+          
+          <!-- Ejemplo 20: Encontrar el máximo y mínimo -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 20: Encontrar el máximo y mínimo en un arreglo</div>
+            <button class="copy-btn" onclick="copyCode('code20')">Copiar Código</button>
+          </div>
+          <pre id="code20">#include &lt;stdio.h&gt;
+
+#define MAX 100
+
+int main() {
+    int arr[MAX];
+    int n, i;
+    int max, min;
+    
+    printf("Ingresa el número de elementos: ");
+    scanf("%d", &n);
+    
+    if (n > MAX || n <= 0) {
+        printf("Número de elementos no válido.\\n");
+        return 1;
+    }
+    
+    printf("Ingresa los elementos del arreglo:\\n");
+    for (i = 0; i < n; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+    
+    max = min = arr[0];
+    
+    for (i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    
+    printf("El valor máximo es: %d\\n", max);
+    printf("El valor mínimo es: %d\\n", min);
+    
+    return 0;
+}</pre>
+        </div>
+        
+        <div class="category">
+          <h3>Ejercicios con arreglos bidimensionales</h3>
+          
+          <!-- Ejemplo 21: Suma de matrices -->
+          <div class="code-header">
+            <div class="code-title">Ejercicio 21: Suma de dos matrices</div>
+            <button class="copy-btn" onclick="copyCode('code21')">Copiar Código</button>
+          </div>
+          <pre id="code21">#include &lt;stdio.h&gt;
+
+#define FILAS 3
+#define COLUMNAS 3
+
+int main() {
+    int matriz1[FILAS][COLUMNAS], matriz2[FILAS][COLUMNAS], suma[FILAS][COLUMNAS];
+    int i, j;
+    
+    printf("Ingresa los elementos de la primera matriz %dx%d:\\n", FILAS, COLUMNAS);
+    for (i = 0; i < FILAS; i++) {
+        for (j = 0; j < COLUMNAS; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz1[i][j]);
+        }
+    }
+    
+    printf("Ingresa los elementos de la segunda matriz %dx%d:\\n", FILAS, COLUMNAS);
+    for (i = 0; i < FILAS; i++) {
+        for (j = 0; j < COLUMNAS; j++) {
+            printf("Elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz2[i][j]);
+        }
+    }
+    
+    // Sumar las matrices
+    for (i = 0; i < FILAS; i++) {
